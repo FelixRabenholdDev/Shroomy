@@ -8,7 +8,7 @@ function init() {
     character.src = '../assets/img/2BlueWizardIdle/Chara - BlueIdle00000.png';
     character.onload = function() {
         // ctx.imageSmoothingEnabled = false;
-        ctx.drawImage(character, 20, 60, 100, 100);
+        ctx.drawImage(character, 20, 300, 100, 100);
     }
    
 }
