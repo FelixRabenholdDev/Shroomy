@@ -1,6 +1,6 @@
 let canvas;
 let ctx;
-let character = new Image();
+let character = new MovableObject();
 
 function init() {
     canvas = document.getElementById("canvas");
@@ -10,5 +10,8 @@ function init() {
         // ctx.imageSmoothingEnabled = false;
         ctx.drawImage(character, 20, 300, 100, 100);
     }
+
+    console.log("MyCharacter is", character);
+    
    
 }
