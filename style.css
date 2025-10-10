@@ -24,6 +24,5 @@ canvas {
     background-color: whitesmoke;
     display: block;
     margin: 20px auto;
-    width: 720px;
-    height: 480px;
+    image-rendering: pixelated;
 }
