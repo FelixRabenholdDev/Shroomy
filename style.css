@@ -2,6 +2,7 @@
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     box-sizing: border-box;    
     scroll-behavior: smooth;
+    background-color: rgba(93, 143, 93, 0.815);
 }
 
 a{
@@ -21,7 +22,7 @@ body {
 
 canvas {
     border: 2px solid black;
-    background-color: whitesmoke;
+    background-color: black;
     display: block;
     margin: 20px auto;
     image-rendering: pixelated;
