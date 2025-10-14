@@ -19,30 +19,30 @@ class Character extends MovableObject {
     '../assets/img/2BlueWizardIdle/Chara - BlueIdle00016.png',
     '../assets/img/2BlueWizardIdle/Chara - BlueIdle00017.png',
     '../assets/img/2BlueWizardIdle/Chara - BlueIdle00018.png',
-    '../assets/img/2BlueWizardIdle/Chara - BlueIdle00019.png'
+    '../assets/img/2BlueWizardIdle/Chara - BlueIdle00019.png',
   ];
 
   Walk_Images = [
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00000.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00001.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00002.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00003.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00004.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00005.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00006.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00007.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00008.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00009.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00010.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00011.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00012.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00013.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00014.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00015.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00016.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00017.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00018.png',
-    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00019.png'
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00000.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00001.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00002.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00003.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00004.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00005.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00006.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00007.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00008.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00009.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00010.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00011.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00012.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00013.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00014.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00015.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00016.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00017.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00018.png',
+    '../assets/img/2BlueWizardWalk/Chara_BlueWalk00019.png',
   ];
 
   constructor() {
@@ -50,16 +50,34 @@ class Character extends MovableObject {
       '../assets/img/2BlueWizardIdle/Chara - BlueIdle00000.png',
     );
     this.loadImages(this.Idle_Images);
+    this.loadImages(this.Walk_Images);
 
     this.animate();
   }
 
   animate() {
     setInterval(() => {
-      let i = this.currentImage % this.Idle_Images.length;
-      let path = this.Idle_Images[i];
-      this.img = this.imageCache[path];
-      this.currentImage++;
+      if (this.world.keyboard.RIGHT) {
+        this.x += this.speed;
+        let i = this.currentImage % this.Walk_Images.length;
+        let path = this.Walk_Images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+      }
+
+      else if (this.world.keyboard.LEFT) {
+        let i = this.currentImage % this.Walk_Images.length;
+        let path = this.Walk_Images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+      }
+
+      else {
+        let i = this.currentImage % this.Idle_Images.length;
+        let path = this.Idle_Images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+      }
     }, 150);
   }
 
