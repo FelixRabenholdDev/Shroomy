@@ -24,7 +24,7 @@ class Character extends MovableObject {
     '../assets/img/2BlueWizardIdle/Chara - BlueIdle00019.png',
   ];
 
-  Walk_Images = [
+  Walking_Images = [
     '../assets/img/2BlueWizardWalk/Chara_BlueWalk00000.png',
     '../assets/img/2BlueWizardWalk/Chara_BlueWalk00001.png',
     '../assets/img/2BlueWizardWalk/Chara_BlueWalk00002.png',
@@ -52,7 +52,7 @@ class Character extends MovableObject {
       '../assets/img/2BlueWizardIdle/Chara - BlueIdle00000.png',
     );
     this.loadImages(this.Idle_Images);
-    this.loadImages(this.Walk_Images);
+    this.loadImages(this.Walking_Images);
 
     this.animate();
   }
@@ -73,10 +73,7 @@ class Character extends MovableObject {
 
     setInterval(() => {
       if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-        let i = this.currentImage % this.Walk_Images.length;
-        let path = this.Walk_Images[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
+        this.playAnimation(this.Walking_Images);
       }
     }, 75);
 

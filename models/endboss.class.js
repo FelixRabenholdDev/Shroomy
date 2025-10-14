@@ -1,4 +1,8 @@
 class Endboss extends MovableObject {
+
+    y = 175;
+    height = 200;
+    width = 200;    
     Walking_Images = [
     '../assets/img/SlimeOrange/SlimeOrange_00000.png',
     '../assets/img/SlimeOrange/SlimeOrange_00001.png',
@@ -36,21 +40,13 @@ class Endboss extends MovableObject {
         super().loadImage('../assets/img/SlimeOrange/SlimeOrange_00000.png');
         this.loadImages(this.Walking_Images);
 
-        this.x = 500 + Math.random() * 500;
-        this.width = 200;
-        this.height = 200;
-        this.speed = 0.15 + Math.random() * 0.35;
+        this.x = 700 + Math.random() * 500;
         this.animate();
-        this.y = 290;
   }
 
   animate() {
-    this.moveLeft();
     setInterval(() => {
-      let i = this.currentImage % this.Walking_Images.length;
-      let path = this.Walking_Images[i];
-      this.img = this.imageCache[path];
-      this.currentImage++;
+      this.playAnimation(this.Walking_Images);
     }, 100);
   }
 }
