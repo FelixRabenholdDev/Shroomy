@@ -22,6 +22,29 @@ class Character extends MovableObject {
     '../assets/img/2BlueWizardIdle/Chara - BlueIdle00019.png'
   ];
 
+  Walk_Images = [
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00000.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00001.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00002.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00003.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00004.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00005.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00006.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00007.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00008.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00009.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00010.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00011.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00012.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00013.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00014.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00015.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00016.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00017.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00018.png',
+    '../assets/img/2BlueWizardWalk/Chara - BlueWalk00019.png'
+  ];
+
   constructor() {
     super().loadImage(
       '../assets/img/2BlueWizardIdle/Chara - BlueIdle00000.png',
