@@ -1,4 +1,5 @@
 class Character extends MovableObject {
+  speed = 1;
   Idle_Images = [
     '../assets/img/2BlueWizardIdle/Chara - BlueIdle00000.png',
     '../assets/img/2BlueWizardIdle/Chara - BlueIdle00001.png',
@@ -59,26 +60,28 @@ class Character extends MovableObject {
     setInterval(() => {
       if (this.world.keyboard.RIGHT) {
         this.x += this.speed;
+      }
+
+      if (this.world.keyboard.LEFT) {
+        this.x -= this.speed;
+      }
+    }, 1000 / 60);
+
+    setInterval(() => {
+      if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
         let i = this.currentImage % this.Walk_Images.length;
         let path = this.Walk_Images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
       }
+    }, 70);
 
-      else if (this.world.keyboard.LEFT) {
-        let i = this.currentImage % this.Walk_Images.length;
-        let path = this.Walk_Images[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
-      }
-
-      else {
-        let i = this.currentImage % this.Idle_Images.length;
-        let path = this.Idle_Images[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
-      }
-    }, 150);
+    // setInterval(() => {
+    //     let i = this.currentImage % this.Idle_Images.length;
+    //     let path = this.Idle_Images[i];
+    //     this.img = this.imageCache[path];
+    //     this.currentImage++;
+    // }, 150);
   }
 
   jump() {}
