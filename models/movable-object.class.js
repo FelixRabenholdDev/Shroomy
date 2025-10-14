@@ -22,7 +22,8 @@ class MovableObject {
     });
   }
 
-  moveRight() {}
+  moveRight() {
+  }
 
   moveLeft() {
     setInterval(() => {

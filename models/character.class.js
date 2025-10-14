@@ -1,5 +1,6 @@
 class Character extends MovableObject {
-  speed = 1;
+
+  speed = 1.5;
   Idle_Images = [
     '../assets/img/2BlueWizardIdle/Chara - BlueIdle00000.png',
     '../assets/img/2BlueWizardIdle/Chara - BlueIdle00001.png',
@@ -67,6 +68,7 @@ class Character extends MovableObject {
         this.x -= this.speed;
         this.otherDirection = true;
       }
+      this.world.camera_x = -this.x + 100;
     }, 1000 / 60);
 
     setInterval(() => {
@@ -76,7 +78,7 @@ class Character extends MovableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
       }
-    }, 70);
+    }, 75);
 
     // setInterval(() => {
     //     let i = this.currentImage % this.Idle_Images.length;
