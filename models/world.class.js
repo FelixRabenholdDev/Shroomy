@@ -1,14 +1,9 @@
 class World {
   character = new Character();
-  enemies = [new Slime(), new Slime(), new Slime()];
 
-  backgroundObjects = [
-    new BackgroundObject('assets/img/Background/backgroundInverted.jpg', -719, 0),
-    new BackgroundObject('assets/img/Background/background.jpg', 0, 0),
-    new BackgroundObject('assets/img/Background/backgroundInverted.jpg', 719, 0),
-    new BackgroundObject('assets/img/Background/backgroundInverted.jpg', 719*2, 0),
-    new BackgroundObject('assets/img/Background/backgroundInverted.jpg', 719*3, 0),
-  ];
+  enemies = level1.enemies;
+  backgroundObjects = level1.backgroundObjects;
+
   canvas;
   ctx;
   keyboard;
