@@ -11,7 +11,7 @@ class World {
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
     this.keyboard = keyboard;
-    this.draw();
+    this.drawWorld();
     this.setWorld();
   }
 
@@ -19,7 +19,7 @@ class World {
     this.character.world = this;
   }
 
-  draw() {
+  drawWorld() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.ctx.translate(this.camera_x, 0); // camera movement
@@ -33,7 +33,7 @@ class World {
     // Draw() triggers over and over again
     let self = this;
     requestAnimationFrame(function () {
-      self.draw();
+      self.drawWorld();
     });
   }
 
@@ -47,17 +47,11 @@ class World {
     if (moObj.otherDirection) {
       this.flipImage(moObj);
     }
-    this.ctx.drawImage(moObj.img, moObj.x, moObj.y, moObj.width, moObj.height);
-
-    // this.ctx.beginPath();
-    // this.ctx.rect(moObj.x, moObj.y, moObj.x + moObj.width, moObj.y + moObj.height);
-    // this.ctx.lineWidth = 10;
-    // this.ctx.strokeStyle = 'blue';
-    // this.ctx.stroke();
+    moObj.draw(this.ctx);
+    moObj.drawFrame(this.ctx);    
 
     if (moObj.otherDirection) {
-      moObj.x = moObj.x * -1;
-      this.ctx.restore();
+      this.flipImageBack(moObj);
     }
   }
 
@@ -66,5 +60,10 @@ class World {
       this.ctx.translate(moObj.width, 0);
       this.ctx.scale(-1, 1);
       moObj.x = moObj.x * -1;
+  }
+
+  flipImageBack(moObj) {
+      moObj.x = moObj.x * -1;
+      this.ctx.restore();
   }
 }
