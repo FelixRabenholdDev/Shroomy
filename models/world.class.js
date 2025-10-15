@@ -48,6 +48,13 @@ class World {
       this.flipImage(moObj);
     }
     this.ctx.drawImage(moObj.img, moObj.x, moObj.y, moObj.width, moObj.height);
+
+    // this.ctx.beginPath();
+    // this.ctx.rect(moObj.x, moObj.y, moObj.x + moObj.width, moObj.y + moObj.height);
+    // this.ctx.lineWidth = 10;
+    // this.ctx.strokeStyle = 'blue';
+    // this.ctx.stroke();
+
     if (moObj.otherDirection) {
       moObj.x = moObj.x * -1;
       this.ctx.restore();
