@@ -42,11 +42,22 @@ class MovableObject {
   }
 
   drawFrame(ctx) {
-    ctx.beginPath();
-    ctx.rect(this.x, this.y, this.width, this.height);
-    ctx.lineWidth = 10;
-    ctx.strokeStyle = 'blue';
-    ctx.stroke();
+    if (this instanceof Character || this instanceof Endboss || this instanceof Slime) {
+      ctx.beginPath();
+      ctx.rect(this.x, this.y, this.width, this.height);
+      ctx.lineWidth = 10;
+      ctx.strokeStyle = 'blue';
+      ctx.stroke();
+    }
+  }
+
+  isColliding(moObj) {
+    return (
+      this.x + this.width > moObj.x &&
+      this.x < moObj.x + moObj.width &&
+      this.y + this.height > moObj.y &&
+      this.y < moObj.y + moObj.height
+    );
   }
 
   playAnimation(images) {
