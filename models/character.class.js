@@ -66,11 +66,33 @@ class Character extends MovableObject {
     '../assets/img/2BlueWizardJump/CharaWizardJump_00007.png',
   ];
 
+  Hurting_Images = [
+    '../assets/img/2BlueWizardJump/Dash2/DashBlue_00002.png',
+    '../assets/img/2BlueWizardJump/Dash2/DashBlue_00003.png',
+    '../assets/img/2BlueWizardJump/Dash2/DashBlue_00004.png',
+    '../assets/img/2BlueWizardJump/Dash2/DashBlue_00005.png',
+    '../assets/img/2BlueWizardJump/Dash2/DashBlue_00006.png',
+    '../assets/img/2BlueWizardJump/Dash2/DashBlue_00007.png',
+    '../assets/img/2BlueWizardJump/Dash2/DashBlue_00008.png',
+  ];
+
+  Dying_Images = [
+    '../assets/img/2BlueWizardJump/Dash2/DashBlue_00002.png',
+    '../assets/img/2BlueWizardJump/Dash2/DashBlue_00003.png',
+    '../assets/img/2BlueWizardJump/Dash2/DashBlue_00004.png',
+    '../assets/img/2BlueWizardJump/Dash2/DashBlue_00005.png',
+    '../assets/img/2BlueWizardJump/Dash2/DashBlue_00006.png',
+    '../assets/img/2BlueWizardJump/Dash2/DashBlue_00007.png',
+    '../assets/img/2BlueWizardJump/Dash2/DashBlue_00008.png',
+  ];
+
   constructor() {
     super().loadImage('../assets/img/2BlueWizardIdle/Chara - BlueIdle00000.png',);
     this.loadImages(this.Idle_Images);
     this.loadImages(this.Walking_Images);
     this.loadImages(this.Jumping_Images);
+    this.loadImages(this.Hurting_Images);
+    this.loadImages(this.Dying_Images);
     this.applyGravity()
     this.animate();
   }
@@ -98,6 +120,12 @@ class Character extends MovableObject {
       if (this.isAboveGround()) {
         this.playAnimation(this.Jumping_Images);
       }
+      else if (this.isHurt()) {
+        this.playAnimation(this.Hurting_Images);
+      }
+      else if (this.isDead()) {
+        this.playAnimation(this.Dying_Images);
+      }
     }, 150);
 
     setInterval(() => {
@@ -110,8 +138,6 @@ class Character extends MovableObject {
       if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.isAboveGround()) {
         this.playAnimation(this.Idle_Images);
       }
-    }, 150);
-  }
-
-  
+    }, 150);  
+}
 }

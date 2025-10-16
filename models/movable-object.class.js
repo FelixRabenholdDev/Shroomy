@@ -10,6 +10,8 @@ class MovableObject {
   otherDirection = false;
   speedY = 0;
   acceleration = 0.4;
+  energy = 100;
+  lastHit = 0;
 
   offset = {
     top: 0,
@@ -73,6 +75,26 @@ class MovableObject {
       this.y + this.height - this.offset.bottom > moObj.y + moObj.offset.top &&
       this.y + this.offset.top < moObj.y + moObj.height - moObj.offset.bottom
     );
+  }
+
+  handleCollision() {
+    this.energy -= 5;
+    if (this.energy < 0) {
+      this.energy = 0;
+    } else {
+      this.lastHit = new Date().getTime();
+    }
+    console.log('Collision detected!', this.energy);
+  }
+
+  isHurt() {
+    let timepassed = new Date().getTime() - this.lastHit;
+    timepassed = timepassed / 1000;
+    return timepassed < 5;
+  }
+
+  isDead() {
+    return this.energy == 0;
   }
 
   playAnimation(images) {
