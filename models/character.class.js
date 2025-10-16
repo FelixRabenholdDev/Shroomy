@@ -1,6 +1,14 @@
 class Character extends MovableObject {
 
   speed = 1.1;
+
+  offset = {
+    top: 20,
+    bottom: 20,
+    left: 35,
+    right: 35,
+  };
+  
   Idle_Images = [
     '../assets/img/2BlueWizardIdle/Chara - BlueIdle00000.png',
     '../assets/img/2BlueWizardIdle/Chara - BlueIdle00001.png',

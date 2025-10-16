@@ -11,6 +11,13 @@ class MovableObject {
   speedY = 0;
   acceleration = 0.4;
 
+  offset = {
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  };
+
   applyGravity() {
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
@@ -48,15 +55,23 @@ class MovableObject {
       ctx.lineWidth = 10;
       ctx.strokeStyle = 'blue';
       ctx.stroke();
+      ctx.strokeStyle = 'red';
+      ctx.lineWidth = 4;
+      ctx.strokeRect(
+        this.x + this.offset.left,
+        this.y + this.offset.top,
+        this.width - this.offset.left - this.offset.right,
+        this.height - this.offset.top - this.offset.bottom
+    );
     }
   }
 
   isColliding(moObj) {
     return (
-      this.x + this.width > moObj.x &&
-      this.x < moObj.x + moObj.width &&
-      this.y + this.height > moObj.y &&
-      this.y < moObj.y + moObj.height
+      this.x + this.width - this.offset.right > moObj.x + moObj.offset.left &&
+      this.x + this.offset.left < moObj.x + moObj.width - moObj.offset.right &&
+      this.y + this.height - this.offset.bottom > moObj.y + moObj.offset.top &&
+      this.y + this.offset.top < moObj.y + moObj.height - moObj.offset.bottom
     );
   }
 

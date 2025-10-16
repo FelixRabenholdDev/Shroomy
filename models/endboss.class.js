@@ -2,7 +2,15 @@ class Endboss extends MovableObject {
 
     y = 175;
     height = 200;
-    width = 200;    
+    width = 200;
+
+    offset = {
+    top: 20,
+    bottom: 35,
+    left: 15,
+    right: 10,
+  };
+
     Walking_Images = [
     '../assets/img/SlimeOrange/SlimeOrange_00000.png',
     '../assets/img/SlimeOrange/SlimeOrange_00001.png',
