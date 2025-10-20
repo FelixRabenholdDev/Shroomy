@@ -27,24 +27,6 @@ class MovableObject extends DrawableObject{
       return this.y < 250;
   }  
 
-  drawFrame(ctx) {
-    if (this instanceof Character || this instanceof Endboss || this instanceof Slime) {
-      ctx.beginPath();
-      ctx.rect(this.x, this.y, this.width, this.height);
-      ctx.lineWidth = 10;
-      ctx.strokeStyle = 'blue';
-      ctx.stroke();
-      ctx.strokeStyle = 'red';
-      ctx.lineWidth = 4;
-      ctx.strokeRect(
-        this.x + this.offset.left,
-        this.y + this.offset.top,
-        this.width - this.offset.left - this.offset.right,
-        this.height - this.offset.top - this.offset.bottom
-    );
-    }
-  }
-
   isColliding(moObj) {
     return (
       this.x + this.width - this.offset.right > moObj.x + moObj.offset.left &&

@@ -1,8 +1,42 @@
 class StatusBar extends DrawableObject {
 
     IMAGES = [
-        'img/health.png',
-        'img/energy.png',
-        'img/coins.png'
+        'assets/img/UIBars/Blue00.png',
+        'assets/img/UIBars/Blue25.png',
+        'assets/img/UIBars/Blue50.png',
+        'assets/img/UIBars/Blue75.png',
+        'assets/img/UIBars/Blue100.png'
     ];
+
+    percentage = 100;    
+
+    constructor() {
+        super();
+        this.loadImages(this.IMAGES);
+        this.x = 20;
+        this.y = 0;
+        this.width = 200;
+        this.height = 60;
+        this.setPercentage(100);
+    }
+
+    setPercentage(percentage) {
+        this.percentage = percentage;
+        const imageIndex = this.resolveImageIndex();
+        this.currentImage = this.imageCache[this.IMAGES[imageIndex]];
+    }
+
+    resolveImageIndex() {
+        if (this.percentage == 100) {
+            return 4;
+        } else if (this.percentage >= 75) {
+            return 3;
+        } else if (this.percentage >= 50) {
+            return 2;
+        } else if (this.percentage >= 25) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 }
