@@ -97,51 +97,6 @@ class Character extends MovableObject {
     this.animate();
   }
 
-  // Intervalls for movement and animation // UPDATE
-//   animate() {
-//     setInterval(() => {
-//       if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-//         this.moveRight();
-//         this.otherDirection = false;
-//       }
-
-//       if (this.world.keyboard.LEFT && this.x > -500) {
-//         this.moveLeft();
-//         this.otherDirection = true;
-//       }
-
-//       if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-//         this.jump();
-//       }
-
-//       this.world.camera_x = -this.x + 100;
-//     }, 1000 / 60);
-
-//     setInterval(() => {
-//       if (this.isAboveGround()) {
-//         this.playAnimation(this.Jumping_Images);
-//       }
-//       else if (this.isHurt()) {
-//         this.playAnimation(this.Hurting_Images);
-//       }
-//       else if (this.isDead()) {
-//         this.playAnimation(this.Dying_Images);
-//       }
-//     }, 150);
-
-//     setInterval(() => {
-//       if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-//         this.playAnimation(this.Walking_Images);    
-//       }
-//     }, 100);
-
-//     setInterval(() => {
-//       if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.isAboveGround()) {
-//         this.playAnimation(this.Idle_Images);
-//       }
-//     }, 150);  
-// }
-
 animate() {
   setInterval(() => {
     if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
