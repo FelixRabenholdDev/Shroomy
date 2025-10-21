@@ -14,7 +14,6 @@ class World {
     this.keyboard = keyboard;
     this.drawWorld();
     this.setWorld();
-    this.checkCollisions();
   }
 
   setWorld() {
@@ -22,14 +21,12 @@ class World {
   }
 
   checkCollisions() {
-    setInterval(() => {
       this.level.enemies.forEach((enemy) => {
-        if (this.character.isColliding(enemy)) {
+        if (this.character.isColliding(enemy) && !this.character.isHurt()) {
           this.character.handleCollision();
           this.statusbar.setPercentage(this.character.energy);
         }
       });
-    }, 1000 / 60);
   }  
 
   drawWorld() {
@@ -48,6 +45,8 @@ class World {
     this.addObjectsToMap(this.level.enemies);
 
     this.ctx.translate(-this.camera_x, 0); // camera movement
+
+    this.checkCollisions();
 
     // Draw() triggers over and over again
     let self = this;
