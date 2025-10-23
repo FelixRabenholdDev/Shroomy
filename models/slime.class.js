@@ -1,5 +1,12 @@
 class Slime extends MovableObject {
 
+  offset = {
+    top: 7,
+    bottom: 7,
+    left: 7,
+    right: 7,
+  };
+
     Walking_Images = [
     '../assets/img/SlimeGreen/SlimeBasic_00000.png',
     '../assets/img/SlimeGreen/SlimeBasic_00001.png',

@@ -21,7 +21,7 @@ class World {
 
   setWorld() {
     this.character.world = this;
-  } 
+  }
 
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
@@ -35,11 +35,38 @@ class World {
   checkThrowObjects() {
     if (this.keyboard.D && Date.now() - this.lastThrowTime > 500) {
       let throwableObject = new ThrowableObject(
-        this.character.x + 100,
-        this.character.y + 100,
+        this.character.x + 60,
+        this.character.y + 40,
       );
       this.throwableObjects.push(throwableObject);
       this.lastThrowTime = new Date().getTime();
+    }
+  }
+
+  checkThrowableCollisions() {
+    this.throwableObjects.forEach((throwable) => {
+      this.level.enemies.forEach((enemy) => {
+        if (throwable.isColliding(enemy)) {
+          if (enemy.isEndboss) {
+            enemy.takeHit(25);
+            throwable.markedForDeletion = true;
+          } else {
+            enemy.markedForDeletion = true;
+            throwable.markedForDeletion = true;
+          }
+        }
+      });
+    });
+
+    this.throwableObjects = this.throwableObjects.filter(
+      (o) => !o.markedForDeletion,
+    );
+
+    for (let i = this.level.enemies.length - 1; i >= 0; i--) {
+      const enemy = this.level.enemies[i];
+      if (enemy.markedForDeletion) {
+        this.level.enemies.splice(i, 1);
+      }
     }
   }
 
@@ -63,6 +90,7 @@ class World {
 
     this.checkCollisions();
     this.checkThrowObjects();
+    this.checkThrowableCollisions();
 
     // Draw() triggers over and over again
     let self = this;

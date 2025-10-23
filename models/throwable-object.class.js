@@ -8,14 +8,6 @@ class ThrowableObject extends MovableObject {
         '../assets/img/Bullet/Bullet5.png',
     ]
 
-    // constructor() {
-    //     super();
-    //     this.width = 20;
-    //     this.height = 20;
-    //     this.speed = 5;
-    //     this.loadImages(this.Ball_Images);
-    // }
-
     constructor(x, y) {
         super().loadImage('../assets/img/Bullet/Bullet1.png');
         this.x = x;
@@ -30,7 +22,7 @@ class ThrowableObject extends MovableObject {
         this.speedY = 10;
         this.applyGravity();
         setInterval(() => {
-            this.x += 10;
+            this.x += 7;
         }, 25);
     }
 }

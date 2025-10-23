@@ -1,5 +1,5 @@
 const level1 = new Level(
-  [new Slime(), new Slime(), new Slime(), new Endboss()],
+  [new Slime(), new Slime(), new Slime(), new Slime(), new Endboss()],
   [
     new BackgroundObject('assets/img/Background/backgroundInverted.jpg', -719, 0),
     new BackgroundObject('assets/img/Background/background.jpg', 0, 0),

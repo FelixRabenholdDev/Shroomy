@@ -26,11 +26,7 @@ class DrawableObject {
 
   drawFrame(ctx) {
     if (this instanceof Character || this instanceof Endboss || this instanceof Slime) {
-      ctx.beginPath();
-      ctx.rect(this.x, this.y, this.width, this.height);
-      ctx.lineWidth = 10;
-      ctx.strokeStyle = 'blue';
-      ctx.stroke();
+      ctx.beginPath();      
       ctx.strokeStyle = 'red';
       ctx.lineWidth = 4;
       ctx.strokeRect(

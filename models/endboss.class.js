@@ -1,17 +1,18 @@
 class Endboss extends MovableObject {
+  y = 175;
+  height = 200;
+  width = 200;
+  energy = 100;
+  isEndboss = true;
 
-    y = 175;
-    height = 200;
-    width = 200;
-
-    offset = {
+  offset = {
     top: 20,
     bottom: 35,
     left: 15,
     right: 10,
   };
 
-    Walking_Images = [
+  Walking_Images = [
     '../assets/img/SlimeOrange/SlimeOrange_00000.png',
     '../assets/img/SlimeOrange/SlimeOrange_00001.png',
     '../assets/img/SlimeOrange/SlimeOrange_00002.png',
@@ -41,20 +42,27 @@ class Endboss extends MovableObject {
     '../assets/img/SlimeOrange/SlimeOrange_00026.png',
     '../assets/img/SlimeOrange/SlimeOrange_00027.png',
     '../assets/img/SlimeOrange/SlimeOrange_00028.png',
-    '../assets/img/SlimeOrange/SlimeOrange_00029.png'
+    '../assets/img/SlimeOrange/SlimeOrange_00029.png',
   ];
 
-    constructor() {
-        super().loadImage('../assets/img/SlimeOrange/SlimeOrange_00000.png');
-        this.loadImages(this.Walking_Images);
+  constructor() {
+    super().loadImage('../assets/img/SlimeOrange/SlimeOrange_00000.png');
+    this.loadImages(this.Walking_Images);
 
-        this.x = 700 + Math.random() * 500;
-        this.animate();
+    this.x = 700 + Math.random() * 500;
+    this.animate();
   }
 
-  animate() {
-    setInterval(() => {
-      this.playAnimation(this.Walking_Images);
-    }, 100);
+  animate() {    
+      setInterval(() => {
+        this.playAnimation(this.Walking_Images);
+      }, 100);
+    }
+
+  takeHit(damage) {
+    this.energy -= damage;
+    if (this.energy <= 0) {
+      this.markedForDeletion = true;
+    }
   }
 }
