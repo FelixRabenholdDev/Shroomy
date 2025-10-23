@@ -15,6 +15,9 @@ window.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") {
         keyboard.LEFT = true;
     }
+    if (event.key === "D") {
+        keyboard.D = true;
+    }
     if (event.key === "ArrowDown") {
         keyboard.DOWN = true;
     }
