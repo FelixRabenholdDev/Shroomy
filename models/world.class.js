@@ -23,45 +23,34 @@ class World {
     this.character.world = this;
   }
 
-  // checkCollisions() {
-  //   this.level.enemies.forEach((enemy) => {
-  //     if (this.character.isColliding(enemy) && !this.character.isHurt()) {
-  //       this.character.handleCollision();
-  //       this.statusbar.setPercentage(this.character.energy);
-  //     }
-  //   });
-  // }
+  checkCollisions() {
+    this.level.enemies.forEach((enemy) => {
+      if (this.character.isColliding(enemy)) {
+        const charBottom = this.character.y + this.character.height;
+        const enemyTop = enemy.y;
+        const overlap = charBottom - enemyTop;
 
-checkCollisions() {
-  this.level.enemies.forEach((enemy) => {
-    if (this.character.isColliding(enemy)) {
+        // Prüfen, ob Charakter über Gegner war und leicht in ihn hineinfällt
+        const comingFromAbove =
+          overlap > 0 &&
+          overlap < this.character.height * 0.6 &&
+          this.character.y < enemy.y &&
+          (this.character.speedY <= 0 || this.character.lastSpeedY < 0);
 
-      const charBottom = this.character.y + this.character.height;
-      const enemyTop = enemy.y;
-      const overlap = charBottom - enemyTop;
-
-      // Prüfen, ob Charakter über Gegner war und leicht in ihn hineinfällt
-      const comingFromAbove =
-        overlap > 0 &&
-        overlap < this.character.height * 0.6 &&
-        this.character.y < enemy.y &&
-        (this.character.speedY <= 0 || this.character.lastSpeedY < 0);
-
-      if (comingFromAbove) {
-        // === Treffer von oben ===
-        enemy.squash();
-        this.character.bounce();
-      } else if (!this.character.isHurt() && !enemy.isSquashed) {
-        // === seitlicher Treffer ===
-        this.character.handleCollision();
-        this.statusbar.setPercentage(this.character.energy);
+        if (comingFromAbove) {
+          // === Treffer von oben ===
+          enemy.squash();
+          this.character.bounce();
+        } else if (!this.character.isHurt() && !enemy.isSquashed) {
+          // === seitlicher Treffer ===
+          this.character.handleCollision();
+          this.statusbar.setPercentage(this.character.energy);
+        }
+        // Letzten speedY für nächste Prüfung speichern
+        this.character.lastSpeedY = this.character.speedY;
       }
-
-      // Letzten speedY für nächste Prüfung speichern
-      this.character.lastSpeedY = this.character.speedY;
-    }
-  });
-}
+    });
+  }
 
   checkThrowObjects() {
     if (this.keyboard.D && Date.now() - this.lastThrowTime > 500) {
