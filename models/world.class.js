@@ -37,16 +37,16 @@ class World {
           this.character.y < enemy.y &&
           (this.character.speedY <= 0 || this.character.lastSpeedY < 0);
 
-        if (comingFromAbove) {
-          // === Treffer von oben ===
+        if (comingFromAbove && !(enemy instanceof Endboss)) {
+          // hit enemy from above
           enemy.squash();
           this.character.bounce();
         } else if (!this.character.isHurt() && !enemy.isSquashed) {
-          // === seitlicher Treffer ===
+          // hit by enemy
           this.character.handleCollision();
           this.statusbar.setPercentage(this.character.energy);
         }
-        // Letzten speedY für nächste Prüfung speichern
+        // save last vertical speed
         this.character.lastSpeedY = this.character.speedY;
       }
     });

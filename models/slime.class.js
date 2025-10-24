@@ -73,7 +73,7 @@ squash() {
 
   setTimeout(() => {
     this.markedForDeletion = true;
-  }, 500);
+  }, 100);
 }
 
 }
