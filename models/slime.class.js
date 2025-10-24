@@ -7,6 +7,8 @@ class Slime extends MovableObject {
     right: 7,
   };
 
+  isSquashed = false;
+
     Walking_Images = [
     '../assets/img/SlimeGreen/SlimeBasic_00000.png',
     '../assets/img/SlimeGreen/SlimeBasic_00001.png',
@@ -62,4 +64,16 @@ class Slime extends MovableObject {
       this.playAnimation(this.Walking_Images);
     }, 100);
   }
+
+squash() {
+  if (this.isSquashed) return;
+  this.isSquashed = true;
+  this.height = this.height / 2;
+  this.y += this.height / 2;
+
+  setTimeout(() => {
+    this.markedForDeletion = true;
+  }, 500);
+}
+
 }

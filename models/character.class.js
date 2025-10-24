@@ -1,6 +1,7 @@
 class Character extends MovableObject {
 
   speed = 1.1;
+  lastSpeedY = 0;
 
   // implement Jumping speed
   // speedJump = 1.5;
@@ -136,5 +137,9 @@ animate() {
       this.playAnimation(this.Idle_Images);
     }
   }, 100);
+}
+
+bounce() {
+  this.speedY = 5;
 }
 }
