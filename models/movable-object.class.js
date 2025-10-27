@@ -5,6 +5,7 @@ class MovableObject extends DrawableObject{
   speedY = 0;
   acceleration = 0.4;
   energy = 100;
+  mana = 100;
   lastHit = 0;
 
   offset = {
@@ -47,6 +48,14 @@ class MovableObject extends DrawableObject{
       this.energy = 0;
     } else {
       this.lastHit = new Date().getTime();
+    }
+  }
+
+  handleMana() {
+    this.mana -= 25;
+
+    if (this.mana < 0) {
+      this.mana = 0;
     }
   }
 

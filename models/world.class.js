@@ -6,7 +6,8 @@ class World {
   ctx;
   keyboard;
   camera_x = 0;
-  statusbar = new StatusBar();
+  statusbar = new HPStatusBar();
+  manaStatusBar = new ManaStatusBar();
   throwableObjects = [];
   lastThrowTime = 0;
 
@@ -44,7 +45,7 @@ class World {
         } else if (!this.character.isHurt() && !enemy.isSquashed) {
           // hit by enemy
           this.character.handleCollision();
-          this.statusbar.setPercentage(this.character.energy);
+          this.statusbar.setPercentage(this.character.energy);          
         }
         // save last vertical speed
         this.character.lastSpeedY = this.character.speedY;
@@ -53,12 +54,14 @@ class World {
   }
 
   checkThrowObjects() {
-    if (this.keyboard.D && Date.now() - this.lastThrowTime > 500) {
+    if (this.keyboard.D && Date.now() - this.lastThrowTime > 500  && this.character.mana > 0) {
       let throwableObject = new ThrowableObject(
         this.character.x + 60,
-        this.character.y + 40,
+        this.character.y + 40,        
       );
       this.throwableObjects.push(throwableObject);
+      this.character.handleMana();
+      this.manaStatusBar.setPercentage(this.character.mana);
       this.lastThrowTime = new Date().getTime();
     }
   }
@@ -100,6 +103,7 @@ class World {
     this.ctx.translate(-this.camera_x, 0);
     // Space for Fixed Objects
     this.addToMap(this.statusbar);
+    this.addToMap(this.manaStatusBar);
     this.ctx.translate(this.camera_x, 0);
 
     this.addToMap(this.character);

@@ -1,5 +1,5 @@
 class ThrowableObject extends MovableObject {
-
+    
     Ball_Images = [
         '../assets/img/Bullet/Bullet1.png',
         '../assets/img/Bullet/Bullet2.png',
@@ -24,5 +24,5 @@ class ThrowableObject extends MovableObject {
         setInterval(() => {
             this.x += 7;
         }, 25);
-    }
+    }    
 }

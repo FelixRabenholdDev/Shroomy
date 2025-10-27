@@ -1,4 +1,4 @@
-class StatusBar extends DrawableObject {
+class HPStatusBar extends DrawableObject {
 
     IMAGES = [
         './assets/img/UIBars/Blue00.png',
