@@ -31,7 +31,7 @@ class World {
         const enemyTop = enemy.y;
         const overlap = charBottom - enemyTop;
 
-        // Prüfen, ob Charakter über Gegner war und leicht in ihn hineinfällt
+        // character falls in enemy
         const comingFromAbove =
           overlap > 0 &&
           overlap < this.character.height * 0.6 &&
@@ -108,6 +108,7 @@ class World {
 
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.level.collectableObjects);
     this.addObjectsToMap(this.throwableObjects);
 
     this.ctx.translate(-this.camera_x, 0); // camera movement

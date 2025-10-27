@@ -28,7 +28,7 @@ class ThrowableObject extends MovableObject {
     }
 
     animateThrow() {
-        this.animationInterval = setInterval(() => {
+        setInterval(() => {
             const gradient = this.speedY;
 
             if (gradient > 6) {
