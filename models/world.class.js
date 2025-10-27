@@ -1,7 +1,7 @@
 class World {
   character = new Character();
   level = level1;
-
+  
   canvas;
   ctx;
   keyboard;
@@ -11,7 +11,7 @@ class World {
   throwableObjects = [];
   lastThrowTime = 0;
 
-  constructor(canvas, keyboard) {
+  constructor(canvas, keyboard) {    
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
     this.keyboard = keyboard;

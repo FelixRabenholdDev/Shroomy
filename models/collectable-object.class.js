@@ -3,18 +3,18 @@ class CollectableObject extends MovableObject {
     collected = false;
 
     Mana_Images = [
-        '../assets/img/CollectibleMana/Mana1.png',
-        '../assets/img/CollectibleMana/Mana2.png',
-        '../assets/img/CollectibleMana/Mana3.png',
-        '../assets/img/CollectibleMana/Mana4.png',        
+        'assets/img/CollectableMana/Mana1.png',
+        'assets/img/CollectableMana/Mana2.png',
+        'assets/img/CollectableMana/Mana3.png',
+        'assets/img/CollectableMana/Mana4.png',
     ]
 
     constructor(x, y) {
         super();
         this.loadImage(this.Mana_Images[0]);
         this.loadImages(this.Mana_Images);
-        this.x = 200 + Math.random() * 500;
-        this.y = 250;
+        this.x = 200 + Math.random() * 700;
+        this.y = 200 + Math.random() * 50;
         this.width = 20;
         this.height = 20;        
         this.animateMana();
