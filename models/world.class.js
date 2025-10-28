@@ -17,9 +17,7 @@ class World {
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
     this.keyboard = keyboard;
-    this.drawWorld();
     this.setWorld();
-    this.checkCollisions();
   }
 
   setWorld() {
@@ -33,7 +31,10 @@ class World {
 
   pause() {
     this.isPaused = true;
-    if (this.animationFrame) cancelAnimationFrame(this.animationFrame);
+    if (this.animationFrame) {
+        cancelAnimationFrame(this.animationFrame);
+        this.animationFrame = null;
+    }
   }
 
   reset() {
@@ -127,13 +128,12 @@ class World {
         collectable.collected = true;
 
         if (this.character.mana <= 75) {
-          this.character.mana += 25;
-          this.manaStatusBar.setPercentage(this.character.mana);
-          collectable.markedForDeletion = true;
+          this.character.mana += 25;          
         } else {
           this.character.mana = 100;
-          this.manaStatusBar.setPercentage(this.character.mana);
         }
+        this.manaStatusBar.setPercentage(this.character.mana);
+        collectable.markedForDeletion = true;
       }
     });
 
@@ -205,7 +205,7 @@ class World {
   }
 
   gameOver() {
-    cancelAnimationFrame(this.animationFrame);
+    this.pause();
     showEndScreen();
   }
 }

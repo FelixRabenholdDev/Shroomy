@@ -2,6 +2,11 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
+function init() {
+    canvas = document.getElementById("canvas");
+    world = new World(canvas, keyboard);
+}
+
 function showStartScreen() {
   document.getElementById("startScreen").classList.remove("hidden");
   document.getElementById("endScreen").classList.add("hidden");
@@ -26,11 +31,6 @@ function retryGame() {
     init();
     world.start();
   }
-}
-
-function init() {
-    canvas = document.getElementById("canvas");
-    world = new World(canvas, keyboard);
 }
 
 window.addEventListener("keydown", (event) => {
