@@ -36,6 +36,18 @@ class World {
     if (this.animationFrame) cancelAnimationFrame(this.animationFrame);
   }
 
+  reset() {
+    this.pause();
+    this.character = new Character();
+    this.level = level1;
+    this.camera_x = 0;
+    this.statusbar = new HPStatusBar();
+    this.manaStatusBar = new ManaStatusBar();
+    this.throwableObjects = [];
+    this.lastThrowTime = 0;
+    this.setWorld();
+  }
+
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
@@ -131,6 +143,8 @@ class World {
   }
 
   drawWorld() {
+    if (this.isPaused) return;
+
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.ctx.translate(this.camera_x, 0); // camera movement
@@ -156,10 +170,8 @@ class World {
     this.checkCollectableCollisions();
 
     // Draw() triggers over and over again
-    let self = this;
-    requestAnimationFrame(function () {
-      self.drawWorld();
-    });
+
+    this.animationFrame = requestAnimationFrame(() => this.drawWorld());
   }
 
   addObjectsToMap(objects) {
@@ -193,7 +205,7 @@ class World {
   }
 
   gameOver() {
-  cancelAnimationFrame(this.animationFrame);
-  showEndScreen();
+    cancelAnimationFrame(this.animationFrame);
+    showEndScreen();
   }
 }

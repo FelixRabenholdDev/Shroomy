@@ -10,6 +10,7 @@ function showStartScreen() {
 function startGame() {
   document.getElementById("startScreen").classList.add("hidden");
   init();
+  world.start();
 }
 
 function showEndScreen() {
@@ -18,7 +19,13 @@ function showEndScreen() {
 
 function retryGame() {
   document.getElementById("endScreen").classList.add("hidden");
-  init();
+  if (world) {
+    world.reset();
+    world.start();
+  } else {
+    init();
+    world.start();
+  }
 }
 
 function init() {
