@@ -26,7 +26,7 @@
   <body onload="showStartScreen();">
     <h1>Shroomy</h1>
     <div class="game-container">
-      <canvas id="canvas" width="720" height="480"> </canvas>
+      <canvas id="canvas" width="720" height="480"> </canvas>      
       <div id="startScreen" class="overlay">
         <div class="overlay-content">
           <img src="assets/img/logo/logo.png" alt="Shroomy Logo" />
@@ -41,6 +41,14 @@
           <button onclick="retryGame()">Retry</button>
         </div>
       </div>
+    </div>
+    <div id="controls" class="controls">
+        <h3>Steuerung</h3>
+        <ul>
+            <li>Pfeiltasten ← → : Bewegen</li>
+            <li>Leertaste : Springen</li>
+            <li>D : Zauber</li>
+        </ul>
     </div>
   </body>
 </html>
