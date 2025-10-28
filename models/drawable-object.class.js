@@ -23,18 +23,4 @@ class DrawableObject {
       this.imageCache[path] = img;
     });
   }
-
-  drawFrame(ctx) {
-    if (this instanceof Character || this instanceof Endboss || this instanceof Slime) {
-      ctx.beginPath();      
-      ctx.strokeStyle = 'red';
-      ctx.lineWidth = 4;
-      ctx.strokeRect(
-        this.x + this.offset.left,
-        this.y + this.offset.top,
-        this.width - this.offset.left - this.offset.right,
-        this.height - this.offset.top - this.offset.bottom
-    );
-    }
-  }
 }
