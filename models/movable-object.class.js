@@ -7,6 +7,7 @@ class MovableObject extends DrawableObject{
   energy = 100;
   mana = 100;
   lastHit = 0;
+  groundLevel = 250;
 
   offset = {
     top: 0,
@@ -28,7 +29,7 @@ class MovableObject extends DrawableObject{
     if (this instanceof ThrowableObject) {
       return true;
     } else {
-      return this.y < 250;
+      return this.y < this.groundLevel;
     }
   }  
 

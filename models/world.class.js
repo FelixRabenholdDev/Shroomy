@@ -48,6 +48,7 @@ class World {
     this.throwableObjects = [];
     this.lastThrowTime = 0;
     this.setWorld();
+    this.character.animate();
   }
 
   checkCollisions() {

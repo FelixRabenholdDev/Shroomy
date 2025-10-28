@@ -1,5 +1,4 @@
 class Slime extends MovableObject {
-
   offset = {
     top: 7,
     bottom: 7,
@@ -8,8 +7,9 @@ class Slime extends MovableObject {
   };
 
   isSquashed = false;
+  isJumping = false;
 
-    Walking_Images = [
+  Walking_Images = [
     '../assets/img/SlimeGreen/SlimeBasic_00000.png',
     '../assets/img/SlimeGreen/SlimeBasic_00001.png',
     '../assets/img/SlimeGreen/SlimeBasic_00002.png',
@@ -39,7 +39,7 @@ class Slime extends MovableObject {
     '../assets/img/SlimeGreen/SlimeBasic_00026.png',
     '../assets/img/SlimeGreen/SlimeBasic_00027.png',
     '../assets/img/SlimeGreen/SlimeBasic_00028.png',
-    '../assets/img/SlimeGreen/SlimeBasic_00029.png'
+    '../assets/img/SlimeGreen/SlimeBasic_00029.png',
   ];
 
   constructor() {
@@ -50,30 +50,51 @@ class Slime extends MovableObject {
     this.width = 45;
     this.height = 45;
     this.y = 290;
+    this.groundLevel = this.y;
     this.speed = 0.15 + Math.random() * 0.35;
     this.currentImage = Math.floor(Math.random() * this.Walking_Images.length);
+    this.applyGravity();
     this.animate();
+    this.enableRandomJumping();
   }
 
   animate() {
     setInterval(() => {
       this.moveLeft();
     }, 1000 / 60);
-    
+
     setInterval(() => {
       this.playAnimation(this.Walking_Images);
     }, 100);
   }
 
-squash() {
-  if (this.isSquashed) return;
-  this.isSquashed = true;
-  this.height = this.height / 2;
-  this.y += this.height / 2;
+  enableRandomJumping() {
+    setInterval(() => {
+      if (!this.isAboveGround() && !this.isJumping) {
+        if (Math.random() < 0.01) {
+          this.jump();
+          this.isJumping = true;
+        }
+      }
 
-  setTimeout(() => {
-    this.markedForDeletion = true;
-  }, 100);
-}
+      if (!this.isAboveGround()) {
+        this.isJumping = false;
+      }
+    }, 150);
+  }
 
+  jump() {
+    this.speedY = 4 + Math.random() * 5;
+  }
+
+  squash() {
+    if (this.isSquashed) return;
+    this.isSquashed = true;
+    this.height = this.height / 2;
+    this.y += this.height / 2;
+
+    setTimeout(() => {
+      this.markedForDeletion = true;
+    }, 100);
+  }
 }
