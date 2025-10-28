@@ -82,12 +82,14 @@ class MovableObject extends DrawableObject{
   }
 
   moveRight() {
-    this.x += this.speed;
-  }
+  let boost = this.isAboveGround() ? 1.6 : 1.0;
+  this.x += this.speed * boost;
+}
 
-  moveLeft() {
-    this.x -= this.speed;       
-  }
+moveLeft() {
+  let boost = this.isAboveGround() ? 1.6 : 1.0;
+  this.x -= this.speed * boost;
+}
 
   jump() {
     this.speedY = 10;
