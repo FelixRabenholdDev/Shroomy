@@ -14,8 +14,11 @@ function showStartScreen() {
 
 function startGame() {
   document.getElementById("startScreen").classList.add("hidden");
-  init();
-  world.start();
+  if (!world) {
+        init();
+    }
+    world.reset();
+    world.start();
 }
 
 function showEndScreen() {
@@ -23,14 +26,13 @@ function showEndScreen() {
 }
 
 function retryGame() {
-  document.getElementById("endScreen").classList.add("hidden");
-  if (world) {
-    world.reset();
+    document.getElementById("endScreen").classList.add("hidden");
+    if (world) {
+        world.pause();
+        world.ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    world = new World(canvas, keyboard);
     world.start();
-  } else {
-    init();
-    world.start();
-  }
 }
 
 window.addEventListener("keydown", (event) => {

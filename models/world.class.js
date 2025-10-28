@@ -1,6 +1,6 @@
 class World {
   character = new Character();
-  level = level1;
+  level;
 
   canvas;
   ctx;
@@ -17,7 +17,7 @@ class World {
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
     this.keyboard = keyboard;
-    this.setWorld();
+    this.reset();
   }
 
   setWorld() {
@@ -25,6 +25,7 @@ class World {
   }
 
   start() {
+    if (!this.isPaused) return;
     this.isPaused = false;
     this.drawWorld();
   }
@@ -40,7 +41,7 @@ class World {
   reset() {
     this.pause();
     this.character = new Character();
-    this.level = level1;
+    this.level = createLevel1();
     this.camera_x = 0;
     this.statusbar = new HPStatusBar();
     this.manaStatusBar = new ManaStatusBar();
@@ -128,12 +129,12 @@ class World {
         collectable.collected = true;
 
         if (this.character.mana <= 75) {
-          this.character.mana += 25;          
+          this.character.mana += 25;
+          collectable.markedForDeletion = true;        
         } else {
           this.character.mana = 100;
         }
-        this.manaStatusBar.setPercentage(this.character.mana);
-        collectable.markedForDeletion = true;
+        this.manaStatusBar.setPercentage(this.character.mana);        
       }
     });
 
