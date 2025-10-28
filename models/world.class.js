@@ -1,7 +1,7 @@
 class World {
   character = new Character();
   level = level1;
-  
+
   canvas;
   ctx;
   keyboard;
@@ -11,7 +11,7 @@ class World {
   throwableObjects = [];
   lastThrowTime = 0;
 
-  constructor(canvas, keyboard) {    
+  constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
     this.keyboard = keyboard;
@@ -45,7 +45,7 @@ class World {
         } else if (!this.character.isHurt() && !enemy.isSquashed) {
           // hit by enemy
           this.character.handleCollision();
-          this.statusbar.setPercentage(this.character.energy);          
+          this.statusbar.setPercentage(this.character.energy);
         }
         // save last vertical speed
         this.character.lastSpeedY = this.character.speedY;
@@ -54,10 +54,14 @@ class World {
   }
 
   checkThrowObjects() {
-    if (this.keyboard.D && Date.now() - this.lastThrowTime > 500  && this.character.mana > 0) {
+    if (
+      this.keyboard.D &&
+      Date.now() - this.lastThrowTime > 500 &&
+      this.character.mana > 0
+    ) {
       let throwableObject = new ThrowableObject(
         this.character.x + 60,
-        this.character.y + 40,        
+        this.character.y + 40,
       );
       this.throwableObjects.push(throwableObject);
       this.character.handleMana();
@@ -93,6 +97,27 @@ class World {
     }
   }
 
+  checkCollectableCollisions() {
+    this.level.collectableObjects.forEach((collectable) => {
+      if (!collectable.collected && this.character.isColliding(collectable)) {
+        collectable.collected = true;
+
+        if (this.character.mana <= 75) {
+          this.character.mana += 25;
+          this.manaStatusBar.setPercentage(this.character.mana);
+          collectable.markedForDeletion = true;
+        } else {
+          this.character.mana = 100;
+          this.manaStatusBar.setPercentage(this.character.mana);
+        }
+      }
+    });
+
+    this.level.collectableObjects = this.level.collectableObjects.filter(
+      (c) => !c.markedForDeletion,
+    );
+  }
+
   drawWorld() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -116,6 +141,7 @@ class World {
     this.checkCollisions();
     this.checkThrowObjects();
     this.checkThrowableCollisions();
+    this.checkCollectableCollisions();
 
     // Draw() triggers over and over again
     let self = this;
@@ -152,5 +178,10 @@ class World {
   flipImageBack(moObj) {
     moObj.x = moObj.x * -1;
     this.ctx.restore();
+  }
+
+  gameOver() {
+  cancelAnimationFrame(this.animationFrame);
+  showEndScreen();
   }
 }

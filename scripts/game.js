@@ -2,10 +2,28 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
+function showStartScreen() {
+  document.getElementById("startScreen").classList.remove("hidden");
+  document.getElementById("endScreen").classList.add("hidden");
+}
+
+function startGame() {
+  document.getElementById("startScreen").classList.add("hidden");
+  init();
+}
+
+function showEndScreen() {
+  document.getElementById("endScreen").classList.remove("hidden");
+}
+
+function retryGame() {
+  document.getElementById("endScreen").classList.add("hidden");
+  init();
+}
 
 function init() {
     canvas = document.getElementById("canvas");
-    world = new World(canvas, keyboard);
+    world = new World(canvas, keyboard);    
 }
 
 window.addEventListener("keydown", (event) => {

@@ -49,6 +49,10 @@ class MovableObject extends DrawableObject{
     } else {
       this.lastHit = new Date().getTime();
     }
+
+    if (this.isDead() && this instanceof Character) {
+    this.world.gameOver();
+  }
   }
 
   handleMana() {
