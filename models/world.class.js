@@ -10,6 +10,8 @@ class World {
   manaStatusBar = new ManaStatusBar();
   throwableObjects = [];
   lastThrowTime = 0;
+  isPaused = true;
+  animationFrame;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
@@ -22,6 +24,16 @@ class World {
 
   setWorld() {
     this.character.world = this;
+  }
+
+  start() {
+    this.isPaused = false;
+    this.drawWorld();
+  }
+
+  pause() {
+    this.isPaused = true;
+    if (this.animationFrame) cancelAnimationFrame(this.animationFrame);
   }
 
   checkCollisions() {

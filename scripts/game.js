@@ -23,7 +23,7 @@ function retryGame() {
 
 function init() {
     canvas = document.getElementById("canvas");
-    world = new World(canvas, keyboard);    
+    world = new World(canvas, keyboard);
 }
 
 window.addEventListener("keydown", (event) => {
