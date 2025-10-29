@@ -44,7 +44,7 @@ canvas {
 
 button {
     padding: 10px 20px;
-    font-size: 14px;
+    font-size: 20px;
     border: none;
     cursor: pointer;
     border-radius: 8px;
@@ -178,7 +178,7 @@ button:hover {
     }
 }
 
-@media (orientation: landscape) {
+@media (hover: none) {
   #mobileControls {
     display: flex;
   }
