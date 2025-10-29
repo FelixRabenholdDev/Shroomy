@@ -1,10 +1,7 @@
 class Character extends MovableObject {
 
   speed = 1.1;
-  lastSpeedY = 0;
-
-  // implement Jumping speed
-  // speedJump = 1.5;
+  lastSpeedY = 0; 
 
   offset = {
     top: 20,

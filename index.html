@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link rel="stylesheet" href="style.css" />
-    <title>Game</title>    
-    <script src="./models/drawable-object.class.js"></script>    
+    <title>Game</title>
+    <script src="./models/drawable-object.class.js"></script>
     <script src="./models/movable-object.class.js"></script>
-    <script src="./models/character.class.js"></script>    
-    <script src="./models/slime.class.js"></script>    
-    <script src="./models/endboss.class.js"></script>    
+    <script src="./models/character.class.js"></script>
+    <script src="./models/slime.class.js"></script>
+    <script src="./models/endboss.class.js"></script>
     <script src="./models/collectable-object.class.js"></script>
     <script src="./models/throwable-object.class.js"></script>
     <script src="./models/collidable-object.class.js"></script>
     <script src="./models/hp-status-bar.class.js"></script>
     <script src="./models/mana-status-bar.class.js"></script>
-    <script src="./models/background-object.class.js"></script>    
+    <script src="./models/background-object.class.js"></script>
     <script src="./models/keyboard.class.js"></script>
     <script src="./models/level.class.js"></script>
     <script src="./levels/level1.js"></script>
@@ -27,6 +27,7 @@
     <h1>Shroomy</h1>
     <div class="game-container">
       <canvas id="canvas" width="720" height="480"> </canvas>      
+
       <div id="startScreen" class="overlay">
         <div class="overlay-content">
           <img src="assets/img/logo/logo.png" alt="Shroomy Logo" />
@@ -42,13 +43,23 @@
         </div>
       </div>
     </div>
+
+    <!-- begin mobile controls -->
+      <div id="mobileControls" class="hidden mobile-controls">
+        <div class="control-btn left" data-action="left">←</div>
+        <div class="control-btn right" data-action="right">→</div>
+        <div class="control-btn jump" data-action="jump">⤒</div>
+        <div class="control-btn attack" data-action="attack">⚡</div>
+      </div>
+      <!-- end mobile controls -->
+       
     <div id="controls" class="controls">
-        <h3>Steuerung</h3>
-        <ul>
-            <li>Pfeiltasten ← → : Bewegen</li>
-            <li>Leertaste : Springen</li>
-            <li>D : Zauber</li>
-        </ul>
+      <h3>Steuerung</h3>
+      <ul>
+        <li>Pfeiltasten ← → : Bewegen</li>
+        <li>Leertaste : Springen</li>
+        <li>D : Zauber</li>
+      </ul>
     </div>
   </body>
 </html>
