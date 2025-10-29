@@ -178,7 +178,7 @@ button:hover {
     }
 }
 
-@media (max-width: 760px) {
+@media (orientation: landscape) {
   #mobileControls {
     display: flex;
   }

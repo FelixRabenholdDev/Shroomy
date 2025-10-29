@@ -153,18 +153,18 @@ class World {
 
     this.addObjectsToMap(this.level.backgroundObjects);
 
-    this.ctx.translate(-this.camera_x, 0);
-    // Space for Fixed Objects
-    this.addToMap(this.statusbar);
-    this.addToMap(this.manaStatusBar);
-    this.ctx.translate(this.camera_x, 0);
-
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.level.collectableObjects);
     this.addObjectsToMap(this.throwableObjects);
 
-    this.ctx.translate(-this.camera_x, 0); // camera movement
+    this.ctx.translate(-this.camera_x, 0);
+    // Space for Fixed Objects
+    this.statusbar.adjustPosition(this.canvas);
+    this.manaStatusBar.adjustPosition(this.canvas);
+
+    this.addToMap(this.statusbar);
+    this.addToMap(this.manaStatusBar); 
 
     this.checkCollisions();
     this.checkThrowObjects();

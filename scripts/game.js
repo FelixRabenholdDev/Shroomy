@@ -82,3 +82,49 @@ window.addEventListener('keyup', (event) => {
     keyboard.D = false;
   }
 });
+
+function initMobileControls() {
+  const mobileControls = document.getElementById('mobileControls');
+  if (!mobileControls) return;
+
+  const buttons = mobileControls.querySelectorAll('.control-btn');
+
+  buttons.forEach((btn) => {
+    const action = btn.dataset.action;
+
+    btn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      setKeyState(action, true);
+    });
+
+    btn.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      setKeyState(action, false);
+    });
+
+    btn.addEventListener('mousedown', () => setKeyState(action, true));
+    btn.addEventListener('mouseup', () => setKeyState(action, false));
+    btn.addEventListener('mouseleave', () => setKeyState(action, false));
+  });
+}
+
+function setKeyState(action, state) {
+  switch (action) {
+    case 'left':
+      keyboard.LEFT = state;
+      break;
+    case 'right':
+      keyboard.RIGHT = state;
+      break;
+    case 'jump':
+      keyboard.SPACE = state;
+      break;
+    case 'attack':
+      keyboard.D = state;
+      break;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initMobileControls();
+});
