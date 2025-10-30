@@ -26,13 +26,13 @@ function startGame() {
   const muteButton = document.getElementById('muteButton');
   if (muteButton) {
     if (world.soundManager?.isMuted) {
-      muteButton.textContent = '🔇 Stumm';
+      muteButton.textContent = '🔇 Mute';
     }
 
     muteButton.addEventListener('click', () => {
       world.soundManager.toggleMute();
       muteButton.textContent = world.soundManager.isMuted
-        ? '🔇 Stumm'
+        ? '🔇 Mute'
         : '🔊 Sound';
     });
   }

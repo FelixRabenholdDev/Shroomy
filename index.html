@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="assets/img/logo/logo.png" />
     <link rel="stylesheet" href="style.css" />
-    <title>Game</title>
+    <title>Shroomy</title>
     <script src="./models/drawable-object.class.js"></script>
     <script src="./models/movable-object.class.js"></script>
     <script src="./models/character.class.js"></script>
@@ -33,7 +33,7 @@
       <div id="startScreen" class="overlay">
         <div class="overlay-content">
           <img src="assets/img/logo/logo.png" alt="Shroomy Logo" />
-          <h2>Willkommen bei Shroomy!</h2>
+          <h2>Welcome to Shroomy!</h2>
           <button onclick="startGame()" type="button">Start</button>
         </div>
       </div>
@@ -41,14 +41,14 @@
       <div id="endScreen" class="overlay hidden">
         <div class="overlay-content">
           <h2>Game Over</h2>
-          <button onclick="retryGame()" type="button">Versuch es nochmal!</button>
+          <button onclick="retryGame()" type="button">Try again!</button>
         </div>
       </div>
 
       <div id="winScreen" class="overlay hidden">
         <div class="overlay-content">
-          <h2>Glückwunsch! Du hast den Endboss besiegt!</h2>
-          <button onclick="retryGame()" type="button">Nochmals spielen</button>
+          <h2>Congratulations! You have defeated the final boss!</h2>
+          <button onclick="retryGame()" type="button">Play again</button>
         </div>
       </div>
     </div>
@@ -61,11 +61,11 @@
     </div>
 
     <div id="controls" class="controls">      
-      <h3>Steuerung</h3>
+      <h3>Controls</h3>
       <ul>
-        <li>Pfeiltasten ← → : Bewegen</li>
-        <li>Leertaste : Springen</li>
-        <li>D : Zauber</li>
+        <li>Arrow keys ← → : Move</li>
+        <li>Spacebar : Jump</li>
+        <li>D : Cast Spell</li>
       </ul>
     </div>
     <a href="#" class="impressum-link" onclick="openImpressum(event)"
@@ -80,16 +80,16 @@
           Felix Rabenhold<br />
           Rotdornstraße 13<br />
           37639 Bevern<br />
-          Deutschland
+          Germany
         </p>
 
         <p>
-          <strong>Kontakt:</strong><br />          
-          E-Mail: info@example.com
+          <strong>Contact:</strong><br />
+          E-Mail: nikojin@gmx.net
         </p>
 
         <button class="close-impressum" type="button" onclick="closeImpressum()">
-          Schließen
+          Close
         </button>
       </div>
     </div>
