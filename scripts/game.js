@@ -13,15 +13,29 @@ function showStartScreen() {
 }
 
 function startGame() {
-    document.getElementById("startScreen").classList.add("hidden");
+  document.getElementById('startScreen').classList.add('hidden');
 
-    if (!world) {
-        init();
-    } else {
-        world.reset();
+  if (!world) {
+    init();
+  } else {
+    world.reset();
+  }
+
+  world.start();
+
+  const muteButton = document.getElementById('muteButton');
+  if (muteButton) {
+    if (world.soundManager?.isMuted) {
+      muteButton.textContent = '🔇 Stumm';
     }
 
-    world.start();
+    muteButton.addEventListener('click', () => {
+      world.soundManager.toggleMute();
+      muteButton.textContent = world.soundManager.isMuted
+        ? '🔇 Stumm'
+        : '🔊 Sound';
+    });
+  }
 }
 
 function showEndScreen() {
@@ -33,14 +47,14 @@ function showWinScreen() {
 }
 
 function retryGame() {
-    document.getElementById("endScreen").classList.add("hidden");
-    document.getElementById("winScreen").classList.add("hidden");
-    if (world) {
-        world.pause();
-        world.ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-    world = new World(canvas, keyboard);
-    world.start();
+  document.getElementById('endScreen').classList.add('hidden');
+  document.getElementById('winScreen').classList.add('hidden');
+  if (world) {
+    world.pause();
+    world.ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  world = new World(canvas, keyboard);
+  world.start();
 }
 
 window.addEventListener('keydown', (event) => {
@@ -131,13 +145,13 @@ function setKeyState(action, state) {
 }
 
 function openImpressum(event) {
-    event.preventDefault();
-    document.getElementById('impressumOverlay').classList.remove('hidden');
-  }
+  event.preventDefault();
+  document.getElementById('impressumOverlay').classList.remove('hidden');
+}
 
-  function closeImpressum() {
-    document.getElementById('impressumOverlay').classList.add('hidden');
-  }
+function closeImpressum() {
+  document.getElementById('impressumOverlay').classList.add('hidden');
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   initMobileControls();

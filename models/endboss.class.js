@@ -90,7 +90,7 @@ class Endboss extends MovableObject {
       }
 
       if (this.energy <= 50) {
-        this.speed += 0.8;
+        this.speed += 1.0;
       }
     }, 1000 + Math.random() * 1000);
   }

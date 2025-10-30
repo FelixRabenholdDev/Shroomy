@@ -1,5 +1,6 @@
 class SoundManager {
   rate = 1;
+  isMuted = false;
 
   constructor() {
     this.sounds = {
@@ -23,9 +24,13 @@ class SoundManager {
     this.sounds.collect.volume = 0.5;
     this.sounds.slimeHit.volume = 0.4;
     this.sounds.slimeJump.volume = 0.5;
+
+    const savedMute = localStorage.getItem('mute');
+    if (savedMute === 'true') this.mute();
   }
 
   play(name) {
+    if (this.isMuted) return;
     const sound = this.sounds[name];
     if (sound) {
       sound.currentTime = 0;
@@ -34,6 +39,7 @@ class SoundManager {
   }
 
   startLoop(name, rate) {
+    if (this.isMuted) return;
     const sound = this.sounds[name];
     if (sound && sound.paused) {
       sound.currentTime = 0;
@@ -50,11 +56,32 @@ class SoundManager {
   }
 
   startMusic() {
+    if (this.isMuted) return;
     this.backgroundMusic.currentTime = 0;
     this.backgroundMusic.play();
   }
 
   stopMusic() {
     this.backgroundMusic.pause();
+  }
+
+  mute() {
+    this.isMuted = true;
+    this.backgroundMusic.pause();
+    for (let key in this.sounds) {
+      this.sounds[key].pause();
+    }
+    localStorage.setItem('mute', 'true');
+  }
+
+  unmute() {
+    this.isMuted = false;
+    this.backgroundMusic.play();
+    localStorage.setItem('mute', 'false');
+  }
+
+  toggleMute() {
+    if (this.isMuted) this.unmute();
+    else this.mute();
   }
 }

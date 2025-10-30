@@ -21,13 +21,20 @@ h1 {
     font-size: 40px;
 }
 
+html,
 body {
+    overflow: hidden;
     margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     background-image: url('./assets/img/Background/html_background.jpg');
     background-position: center;
     background-repeat: no-repeat;
@@ -35,11 +42,12 @@ body {
 }
 
 canvas {
-    border: 2px solid black;    
+    border: 2px solid black;
     display: block;
     image-rendering: pixelated;
     width: 100%;
-    height: 100%;
+    height: auto;
+    max-height: 100vh;
 }
 
 button {
@@ -57,24 +65,24 @@ button:hover {
 }
 
 .game-container {
-  position: relative;
-  width: 100%;
-  max-width: 720px;
-  aspect-ratio: 3 / 2;
-  margin: 20px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 720px;
+    aspect-ratio: 3 / 2;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: rgba(79, 116, 160, 0.842);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(79, 116, 160, 0.842);
 }
 
 .overlay.hidden {
@@ -118,18 +126,17 @@ button:hover {
     margin: 3px 0;
 }
 
-/* ----- Mobile Controls ----- */
 .mobile-controls {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  width: 100%;
-  height: 35%;
-  display: none;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 10px;
-  pointer-events: none;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    height: 35%;
+    display: none;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px;
+    pointer-events: none;
 }
 
 .control-btn {
@@ -153,70 +160,89 @@ button:hover {
     background: rgba(255, 255, 255, 0.2);
 }
 
+.mute-button {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 9999;
+    padding: 10px 15px;
+    font-size: 18px;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px black;
+    transition: background 0.2s;
+}
+
+.mute-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
 .impressum-link {
-  position: fixed;
-  bottom: 10px;
-  right: 15px;
-  font-size: 16px;
-  color: whitesmoke;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 6px 10px;
-  border-radius: 8px;
-  z-index: 9999;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  transition: background 0.2s;
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    font-size: 16px;
+    color: whitesmoke;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 6px 10px;
+    border-radius: 8px;
+    z-index: 9999;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    transition: background 0.2s;
 }
 
 .impressum-link:hover {
-  background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2);
 }
 
-/* Impressum Overlay */
 .impressum-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
 }
 
 .impressum-overlay.hidden {
-  display: none;
+    display: none;
 }
 
 .impressum-content {
-  background: rgba(79, 115, 160, 0.95);
-  border: 2px solid black;
-  border-radius: 12px;
-  padding: 20px;
-  max-width: 90%;
-  width: 500px;
-  color: white;
-  text-align: left;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    background: rgba(79, 115, 160, 0.95);
+    border: 2px solid black;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 90%;
+    width: 500px;
+    color: white;
+    text-align: left;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
 .impressum-content h2 {
-  text-align: center;
-  text-decoration: underline;
-  margin-bottom: 10px;
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 10px;
 }
 
 .close-impressum {
-  display: block;
-  margin: 20px auto 0;
-  padding: 10px 20px;
-  background: #4CAF50;
-  border: none;
-  border-radius: 8px;
-  font-size: 18px;
-  cursor: pointer;
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background: #4CAF50;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
 }
 
 .close-impressum:hover {
-  background: #45a049;
+    background: #45a049;
 }
 
 @media (orientation: portrait) {
@@ -245,29 +271,37 @@ button:hover {
 }
 
 @media (hover: none) {
-  #mobileControls {
-    display: flex;
-  }
+    #mobileControls {
+        display: flex;
+    }
 
-  h1, .controls {
-    display: none;
-  }
+    h1,
+    .controls {
+        display: none;
+    }
 
-  .impressum-link {
-    font-size: 12px;
-    padding: 5px 8px;
-    bottom: 90px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.6);
-    opacity: 0.85;
-  }
+    .impressum-link {
+        font-size: 12px;
+        padding: 5px 8px;
+        bottom: 90px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        opacity: 0.85;
+    }
 
-  .impressum-link:active {
-    opacity: 1;
-  }
+    .impressum-link:active {
+        opacity: 1;
+    }
 
-  .impressum-content {
-    width: 90%;
-    font-size: 14px;
-  }
+    .impressum-content {
+        width: 90%;
+        font-size: 14px;
+    }
+
+    .mute-button {
+        top: 8px;
+        right: 8px;
+        padding: 6px 10px;
+        font-size: 14px;
+    }
 }
