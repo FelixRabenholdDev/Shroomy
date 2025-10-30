@@ -27,28 +27,28 @@
   </head>
   <body onload="showStartScreen();">
     <h1>Shroomy</h1>
-    <button id="muteButton" class="mute-button">🔊 Sound</button>
+    <button id="muteButton" class="mute-button" type="button">🔊 Sound</button>
     <div class="game-container">
       <canvas id="canvas" width="720" height="480"> </canvas>      
       <div id="startScreen" class="overlay">
         <div class="overlay-content">
           <img src="assets/img/logo/logo.png" alt="Shroomy Logo" />
           <h2>Willkommen bei Shroomy!</h2>
-          <button onclick="startGame()">Start</button>
+          <button onclick="startGame()" type="button">Start</button>
         </div>
       </div>
 
       <div id="endScreen" class="overlay hidden">
         <div class="overlay-content">
           <h2>Game Over</h2>
-          <button onclick="retryGame()">Versuch es nochmal!</button>
+          <button onclick="retryGame()" type="button">Versuch es nochmal!</button>
         </div>
       </div>
 
       <div id="winScreen" class="overlay hidden">
         <div class="overlay-content">
           <h2>Glückwunsch! Du hast den Endboss besiegt!</h2>
-          <button onclick="retryGame()">Nochmals spielen</button>
+          <button onclick="retryGame()" type="button">Nochmals spielen</button>
         </div>
       </div>
     </div>
@@ -88,7 +88,7 @@
           E-Mail: info@example.com
         </p>
 
-        <button class="close-impressum" onclick="closeImpressum()">
+        <button class="close-impressum" type="button" onclick="closeImpressum()">
           Schließen
         </button>
       </div>

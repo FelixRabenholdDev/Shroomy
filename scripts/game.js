@@ -58,6 +58,9 @@ function retryGame() {
 }
 
 window.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+  }
   if (event.key === 'ArrowRight') {
     keyboard.RIGHT = true;
   }
@@ -77,10 +80,12 @@ window.addEventListener('keydown', (event) => {
     event.preventDefault();
     keyboard.SPACE = true;
   }
-  console.log(event);
 });
 
 window.addEventListener('keyup', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+  }
   if (event.key === 'ArrowRight') {
     keyboard.RIGHT = false;
   }
