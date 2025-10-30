@@ -125,6 +125,15 @@ function setKeyState(action, state) {
   }
 }
 
+function openImpressum(event) {
+    event.preventDefault();
+    document.getElementById('impressumOverlay').classList.remove('hidden');
+  }
+
+  function closeImpressum() {
+    document.getElementById('impressumOverlay').classList.add('hidden');
+  }
+
 document.addEventListener('DOMContentLoaded', () => {
   initMobileControls();
 });

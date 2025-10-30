@@ -13,8 +13,8 @@ class CollectableObject extends MovableObject {
         super();
         this.loadImage(this.Mana_Images[0]);
         this.loadImages(this.Mana_Images);
-        this.x = 200 + Math.random() * 700;
-        this.y = 200 + Math.random() * 50;
+        this.x = 200 + Math.random() * 1000;
+        this.y = 200 + Math.random() * 70;
         this.width = 20;
         this.height = 20;        
         this.animateMana();

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="assets/img/logo/logo.png" />
     <link rel="stylesheet" href="style.css" />
     <title>Game</title>
     <script src="./models/drawable-object.class.js"></script>
@@ -26,7 +26,7 @@
   <body onload="showStartScreen();">
     <h1>Shroomy</h1>
     <div class="game-container">
-      <canvas id="canvas" width="720" height="480"> </canvas>      
+      <canvas id="canvas" width="720" height="480"> </canvas>
 
       <div id="startScreen" class="overlay">
         <div class="overlay-content">
@@ -44,15 +44,13 @@
       </div>
     </div>
 
-    <!-- begin mobile controls -->
-      <div id="mobileControls" class="hidden mobile-controls">
-        <div class="control-btn left" data-action="left">←</div>
-        <div class="control-btn right" data-action="right">→</div>
-        <div class="control-btn jump" data-action="jump">⤒</div>
-        <div class="control-btn attack" data-action="attack">⚡</div>
-      </div>
-      <!-- end mobile controls -->
-       
+    <div id="mobileControls" class="hidden mobile-controls">
+      <div class="control-btn left" data-action="left">←</div>
+      <div class="control-btn right" data-action="right">→</div>
+      <div class="control-btn jump" data-action="jump">⤒</div>
+      <div class="control-btn attack" data-action="attack">⚡</div>
+    </div>
+
     <div id="controls" class="controls">
       <h3>Steuerung</h3>
       <ul>
@@ -60,6 +58,32 @@
         <li>Leertaste : Springen</li>
         <li>D : Zauber</li>
       </ul>
+    </div>
+    <a href="#" class="impressum-link" onclick="openImpressum(event)"
+      >Impressum</a
+    >
+
+    <div id="impressumOverlay" class="impressum-overlay hidden">
+      <div class="impressum-content">
+        <h2>Impressum</h2>
+        <p><strong>Angaben gemäß § 5 TMG:</strong></p>
+        <p>
+          Max Mustermann<br />
+          Musterstraße 123<br />
+          12345 Musterstadt<br />
+          Deutschland
+        </p>
+
+        <p>
+          <strong>Kontakt:</strong><br />
+          Telefon: 01234 / 56789<br />
+          E-Mail: info@example.com
+        </p>
+
+        <button class="close-impressum" onclick="closeImpressum()">
+          Schließen
+        </button>
+      </div>
     </div>
   </body>
 </html>

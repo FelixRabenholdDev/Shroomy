@@ -1,6 +1,7 @@
 class World {
   character = new Character();
   level;
+  soundManager = new SoundManager();
 
   canvas;
   ctx;
