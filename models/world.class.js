@@ -23,19 +23,23 @@ class World {
 
   setWorld() {
     this.character.world = this;
+    this.level.enemies.forEach((enemy) => (enemy.world = this));
+    this.level.collectableObjects.forEach((obj) => (obj.world = this));
   }
 
   start() {
     if (!this.isPaused) return;
     this.isPaused = false;
+    this.soundManager.startMusic();
     this.drawWorld();
   }
 
   pause() {
     this.isPaused = true;
+    this.soundManager.stopMusic();
     if (this.animationFrame) {
-        cancelAnimationFrame(this.animationFrame);
-        this.animationFrame = null;
+      cancelAnimationFrame(this.animationFrame);
+      this.animationFrame = null;
     }
   }
 
@@ -69,6 +73,7 @@ class World {
         if (comingFromAbove && !(enemy instanceof Endboss)) {
           // hit enemy from above
           enemy.squash();
+          this.soundManager.play('slimeHit');
           this.character.bounce();
         } else if (!this.character.isHurt() && !enemy.isSquashed) {
           // hit by enemy
@@ -95,6 +100,7 @@ class World {
       this.character.handleMana();
       this.manaStatusBar.setPercentage(this.character.mana);
       this.lastThrowTime = new Date().getTime();
+      this.soundManager.play('shoot');
     }
   }
 
@@ -109,6 +115,7 @@ class World {
             enemy.markedForDeletion = true;
             throwable.markedForDeletion = true;
           }
+          this.soundManager.play('slimeHit');
         }
       });
     });
@@ -120,6 +127,7 @@ class World {
     for (let i = this.level.enemies.length - 1; i >= 0; i--) {
       const enemy = this.level.enemies[i];
       if (enemy.markedForDeletion) {
+        clearInterval(enemy.jumpInterval);
         this.level.enemies.splice(i, 1);
       }
     }
@@ -128,15 +136,15 @@ class World {
   checkCollectableCollisions() {
     this.level.collectableObjects.forEach((collectable) => {
       if (!collectable.collected && this.character.isColliding(collectable)) {
-        collectable.collected = true;
-
         if (this.character.mana <= 75) {
+          collectable.collected = true;
           this.character.mana += 25;
-          collectable.markedForDeletion = true;        
+          collectable.markedForDeletion = true;
+          this.soundManager.play('collect');
         } else {
           this.character.mana = 100;
         }
-        this.manaStatusBar.setPercentage(this.character.mana);        
+        this.manaStatusBar.setPercentage(this.character.mana);
       }
     });
 
@@ -165,7 +173,7 @@ class World {
     this.manaStatusBar.adjustPosition(this.canvas);
 
     this.addToMap(this.statusbar);
-    this.addToMap(this.manaStatusBar); 
+    this.addToMap(this.manaStatusBar);
 
     this.checkCollisions();
     this.checkThrowObjects();
@@ -187,7 +195,7 @@ class World {
     if (moObj.otherDirection) {
       this.flipImage(moObj);
     }
-    moObj.draw(this.ctx); 
+    moObj.draw(this.ctx);
 
     if (moObj.otherDirection) {
       this.flipImageBack(moObj);

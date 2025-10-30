@@ -1,5 +1,4 @@
-class MovableObject extends DrawableObject{  
-  
+class MovableObject extends DrawableObject {
   speed = 0.35;
   otherDirection = false;
   speedY = 0;
@@ -31,7 +30,7 @@ class MovableObject extends DrawableObject{
     } else {
       return this.y < this.groundLevel;
     }
-  }  
+  }
 
   isColliding(moObj) {
     return (
@@ -44,7 +43,7 @@ class MovableObject extends DrawableObject{
 
   handleCollision() {
     this.energy -= 25;
-    
+
     if (this.energy < 0) {
       this.energy = 0;
     } else {
@@ -52,8 +51,8 @@ class MovableObject extends DrawableObject{
     }
 
     if (this.isDead() && this instanceof Character) {
-    this.world.gameOver();
-  }
+      this.world.gameOver();
+    }
   }
 
   handleMana() {
@@ -82,16 +81,19 @@ class MovableObject extends DrawableObject{
   }
 
   moveRight() {
-  let boost = this.isAboveGround() ? 1.6 : 1.0;
-  this.x += this.speed * boost;
-}
+    let boost = this.isAboveGround() ? 1.6 : 1.0;
+    this.x += this.speed * boost;
+  }
 
-moveLeft() {
-  let boost = this.isAboveGround() ? 1.6 : 1.0;
-  this.x -= this.speed * boost;
-}
+  moveLeft() {
+    let boost = this.isAboveGround() ? 1.6 : 1.0;
+    this.x -= this.speed * boost;
+  }
 
   jump() {
     this.speedY = 10;
+    if (this.world && this.world.soundManager) {
+      this.world.soundManager.play('jump');
+    }
   }
 }

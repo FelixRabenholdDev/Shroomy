@@ -1,4 +1,7 @@
 class Slime extends MovableObject {
+
+  jumpInterval;
+
   offset = {
     top: 7,
     bottom: 7,
@@ -69,9 +72,9 @@ class Slime extends MovableObject {
   }
 
   enableRandomJumping() {
-    setInterval(() => {
+    this.jumpInterval = setInterval(() => {
       if (!this.isAboveGround() && !this.isJumping) {
-        if (Math.random() < 0.01) {
+        if (Math.random() < 0.0125) {
           this.jump();
           this.isJumping = true;
         }
@@ -85,6 +88,9 @@ class Slime extends MovableObject {
 
   jump() {
     this.speedY = 4 + Math.random() * 5;
+    if (this.world && this.world.soundManager) {
+      this.world.soundManager.play('slimeJump');
+    }
   }
 
   squash() {
@@ -92,6 +98,8 @@ class Slime extends MovableObject {
     this.isSquashed = true;
     this.height = this.height / 2;
     this.y += this.height / 2;
+
+    clearInterval(this.animInterval);
 
     setTimeout(() => {
       this.markedForDeletion = true;
