@@ -91,7 +91,7 @@ class World {
   checkThrowObjects() {
     if (
       this.keyboard.D &&
-      Date.now() - this.lastThrowTime > 500 &&
+      Date.now() - this.lastThrowTime > 1250 &&
       this.character.mana > 0
     ) {
       let throwableObject = new ThrowableObject(
