@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let soundManager = new SoundManager();
 
 function init() {
   canvas = document.getElementById('canvas');

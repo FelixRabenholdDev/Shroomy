@@ -1,7 +1,6 @@
 class World {
   character = new Character();
   level;
-  soundManager = new SoundManager();
 
   canvas;
   ctx;
@@ -19,6 +18,7 @@ class World {
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
     this.keyboard = keyboard;
+    this.soundManager = soundManager;
     this.reset();
   }
 
@@ -81,6 +81,10 @@ class World {
           // hit by enemy
           this.character.handleCollision();
           this.statusbar.setPercentage(this.character.energy);
+
+          if (enemy.isEndboss && typeof enemy.pauseMovement === 'function') {
+            enemy.pauseMovement();
+          }
         }
         // save last vertical speed
         this.character.lastSpeedY = this.character.speedY;
@@ -94,15 +98,18 @@ class World {
       Date.now() - this.lastThrowTime > 1250 &&
       this.character.mana > 0
     ) {
-      let throwableObject = new ThrowableObject(
-        this.character.x + 60,
-        this.character.y + 40,
-      );
-      this.throwableObjects.push(throwableObject);
-      this.character.handleMana();
-      this.manaStatusBar.setPercentage(this.character.mana);
-      this.lastThrowTime = new Date().getTime();
-      this.soundManager.play('shoot');
+      if (!this.character.otherDirection) {
+        let throwableObject = new ThrowableObject(
+          this.character.x + 60,
+          this.character.y + 40,
+        );
+        this.throwableObjects.push(throwableObject);
+
+        this.character.handleMana();
+        this.manaStatusBar.setPercentage(this.character.mana);
+        this.lastThrowTime = new Date().getTime();
+        this.soundManager.play('shoot');
+      }
     }
   }
 
@@ -112,7 +119,7 @@ class World {
         if (throwable.isColliding(enemy)) {
           if (enemy.isEndboss) {
             enemy.takeHit(25);
-            throwable.markedForDeletion = true;            
+            throwable.markedForDeletion = true;
           } else {
             enemy.markedForDeletion = true;
             throwable.markedForDeletion = true;
@@ -160,6 +167,7 @@ class World {
 
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+    this.ctx.save();
     this.ctx.translate(this.camera_x, 0); // camera movement
 
     this.addObjectsToMap(this.level.backgroundObjects);
@@ -167,9 +175,10 @@ class World {
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.level.collectableObjects);
-    this.addObjectsToMap(this.throwableObjects); 
+    this.addObjectsToMap(this.throwableObjects);
 
-    this.ctx.translate(-this.camera_x, 0);
+    this.ctx.restore();
+
     // Space for Fixed Objects
     this.statusbar.adjustPosition(this.canvas);
     this.manaStatusBar.adjustPosition(this.canvas);
@@ -187,27 +196,28 @@ class World {
     this.checkCollisions();
     this.checkThrowObjects();
     this.checkThrowableCollisions();
-    this.checkCollectableCollisions();    
+    this.checkCollectableCollisions();
 
     // Draw() triggers over and over again
 
-    this.animationFrame = requestAnimationFrame(() => this.drawWorld());    
+    this.animationFrame = requestAnimationFrame(() => this.drawWorld());
   }
 
   addObjectsToMap(objects) {
-    objects.forEach((o) => {
-      this.addToMap(o);
+    objects.forEach((tile) => {
+      this.addToMap(tile);
     });
   }
 
   addToMap(moObj) {
+    let x = Math.round(moObj.x);
     if (moObj.otherDirection) {
-      this.flipImage(moObj);
+      this.flipImage(moObj, x);
     }
-    moObj.draw(this.ctx);
+    moObj.draw(this.ctx, x);
 
     if (moObj.otherDirection) {
-      this.flipImageBack(moObj);
+      this.flipImageBack(moObj, x);
     }
   }
 
