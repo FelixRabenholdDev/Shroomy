@@ -247,7 +247,7 @@ button:hover {
 
 @media (orientation: portrait) {
     body::before {
-        content: "Bitte drehe dein Gerät ins Querformat, um zu spielen.";
+        content: "Please rotate your device to play!";
         position: fixed;
         top: 0;
         left: 0;
@@ -261,7 +261,7 @@ button:hover {
         align-items: center;
         text-align: center;
         z-index: 9999;
-        padding: 20px;
+        padding: 10px;
     }
 
     .game-container,
