@@ -1,11 +1,11 @@
 class ThrowableObject extends MovableObject {
     
     Ball_Images = [
-        '../assets/img/Bullet/Bullet1.png',
-        '../assets/img/Bullet/Bullet2.png',
-        '../assets/img/Bullet/Bullet3.png',
-        '../assets/img/Bullet/Bullet4.png',
-        '../assets/img/Bullet/Bullet5.png',
+        'assets/img/Bullet/Bullet1.png',
+        'assets/img/Bullet/Bullet2.png',
+        'assets/img/Bullet/Bullet3.png',
+        'assets/img/Bullet/Bullet4.png',
+        'assets/img/Bullet/Bullet5.png',
     ]
 
     constructor(x, y) {

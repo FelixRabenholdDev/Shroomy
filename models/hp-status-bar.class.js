@@ -1,10 +1,10 @@
 class HPStatusBar extends DrawableObject {
   IMAGES = [
-    './assets/img/UIBars/Blue00.png',
-    './assets/img/UIBars/Blue25.png',
-    './assets/img/UIBars/Blue50.png',
-    './assets/img/UIBars/Blue75.png',
-    './assets/img/UIBars/Blue100.png',
+    'assets/img/UIBars/Blue00.png',
+    'assets/img/UIBars/Blue25.png',
+    'assets/img/UIBars/Blue50.png',
+    'assets/img/UIBars/Blue75.png',
+    'assets/img/UIBars/Blue100.png',
   ];
 
   percentage = 100;

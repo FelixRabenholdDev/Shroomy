@@ -46,7 +46,7 @@ class Slime extends MovableObject {
   ];
 
   constructor() {
-    super().loadImage('../assets/img/SlimeGreen/SlimeBasic_00000.png');
+    super().loadImage('assets/img/SlimeGreen/SlimeBasic_00000.png');
     this.loadImages(this.Walking_Images);
 
     this.x = 250 + Math.random() * 1500;

@@ -1,10 +1,10 @@
 class EndbossStatusBar extends DrawableObject {
   IMAGES = [
-    './assets/img/UIBars/Red00.png',
-    './assets/img/UIBars/Red25.png',
-    './assets/img/UIBars/Red50.png',
-    './assets/img/UIBars/Red75.png',
-    './assets/img/UIBars/Red100.png',
+    'assets/img/UIBars/Red00.png',
+    'assets/img/UIBars/Red25.png',
+    'assets/img/UIBars/Red50.png',
+    'assets/img/UIBars/Red75.png',
+    'assets/img/UIBars/Red100.png',
   ];
 
   percentage = 100;

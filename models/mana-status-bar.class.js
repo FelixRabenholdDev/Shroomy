@@ -1,10 +1,10 @@
 class ManaStatusBar extends DrawableObject {
   IMAGES = [
-    './assets/img/UIBars/Green00.png',
-    './assets/img/UIBars/Green25.png',
-    './assets/img/UIBars/Green50.png',
-    './assets/img/UIBars/Green75.png',
-    './assets/img/UIBars/Green100.png',
+    'assets/img/UIBars/Green00.png',
+    'assets/img/UIBars/Green25.png',
+    'assets/img/UIBars/Green50.png',
+    'assets/img/UIBars/Green75.png',
+    'assets/img/UIBars/Green100.png',
   ];
 
   percentage = 100;
