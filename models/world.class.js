@@ -36,6 +36,7 @@ class World {
 
   pause() {
     this.isPaused = true;
+    this.soundManager.stopLoop('walk');
     this.soundManager.stopMusic();
     if (this.animationFrame) {
       cancelAnimationFrame(this.animationFrame);

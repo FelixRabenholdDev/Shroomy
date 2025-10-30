@@ -1,6 +1,9 @@
 class SoundManager {
+  rate = 1;
+
   constructor() {
     this.sounds = {
+      walk: new Audio('assets/audio/walk.wav'),
       jump: new Audio('assets/audio/jump.wav'),
       shoot: new Audio('assets/audio/shoot.m4a'),
       collect: new Audio('assets/audio/collect.wav'),
@@ -10,12 +13,15 @@ class SoundManager {
 
     this.backgroundMusic = new Audio('assets/audio/background.mp3');
     this.backgroundMusic.loop = true;
-    this.backgroundMusic.volume = 0.4;
+    this.backgroundMusic.volume = 0.2;
+
+    this.sounds.walk.volume = 0.4;
+    this.sounds.walk.loop = true;
 
     this.sounds.jump.volume = 0.4;
-    this.sounds.shoot.volume = 0.5;
+    this.sounds.shoot.volume = 0.4;
     this.sounds.collect.volume = 0.5;
-    this.sounds.slimeHit.volume = 0.6;
+    this.sounds.slimeHit.volume = 0.4;
     this.sounds.slimeJump.volume = 0.5;
   }
 
@@ -24,6 +30,22 @@ class SoundManager {
     if (sound) {
       sound.currentTime = 0;
       sound.play();
+    }
+  }
+
+  startLoop(name, rate) {
+    const sound = this.sounds[name];
+    if (sound && sound.paused) {
+      sound.currentTime = 0;
+      sound.playbackRate = rate;
+      sound.play();
+    }
+  }
+
+  stopLoop(name) {
+    const sound = this.sounds[name];
+    if (sound && !sound.paused) {
+      sound.pause();
     }
   }
 
