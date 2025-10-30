@@ -74,7 +74,7 @@ class Slime extends MovableObject {
   enableRandomJumping() {
     this.jumpInterval = setInterval(() => {
       if (!this.isAboveGround() && !this.isJumping) {
-        if (Math.random() < 0.0125) {
+        if (Math.random() < 0.03) {
           this.jump();
           this.isJumping = true;
         }
