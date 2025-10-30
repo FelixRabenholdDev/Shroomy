@@ -16,12 +16,13 @@
     <script src="./models/collidable-object.class.js"></script>
     <script src="./models/hp-status-bar.class.js"></script>
     <script src="./models/mana-status-bar.class.js"></script>
+    <script src="./models/boss-status-bar.class.js"></script>
     <script src="./models/background-object.class.js"></script>
     <script src="./models/keyboard.class.js"></script>
     <script src="./models/level.class.js"></script>
     <script src="./levels/level1.js"></script>
     <script src="./models/sound.js"></script>
-    <script src="./models/world.class.js"></script>    
+    <script src="./models/world.class.js"></script>
     <script src="./scripts/game.js"></script>
   </head>
   <body onload="showStartScreen();">
@@ -41,6 +42,13 @@
         <div class="overlay-content">
           <h2>Game Over</h2>
           <button onclick="retryGame()">Retry</button>
+        </div>
+      </div>
+
+      <div id="winScreen" class="overlay hidden">
+        <div class="overlay-content">
+          <h2>Glückwunsch! Du hast den Endboss besiegt!</h2>
+          <button onclick="retryGame()">Nochmals spielen</button>
         </div>
       </div>
     </div>

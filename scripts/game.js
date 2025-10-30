@@ -28,8 +28,13 @@ function showEndScreen() {
   document.getElementById('endScreen').classList.remove('hidden');
 }
 
+function showWinScreen() {
+  document.getElementById('winScreen').classList.remove('hidden');
+}
+
 function retryGame() {
     document.getElementById("endScreen").classList.add("hidden");
+    document.getElementById("winScreen").classList.add("hidden");
     if (world) {
         world.pause();
         world.ctx.clearRect(0, 0, canvas.width, canvas.height);

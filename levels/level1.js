@@ -1,6 +1,6 @@
 function createLevel1() {
   return new Level(
-    [new Slime(), new Slime(), new Slime(), new Slime(), new Endboss()],
+    [new Slime(), new Slime(), new Slime(), new Slime(), new Slime(), new Slime(), new Slime(), new Slime(), new Slime(), new Slime(), new Endboss()],
     [
       new BackgroundObject(
         'assets/img/Background/backgroundInverted.jpg',
@@ -21,6 +21,8 @@ function createLevel1() {
       ),
     ],
     [
+      new CollectableObject(),
+      new CollectableObject(),
       new CollectableObject(),
       new CollectableObject(),
       new CollectableObject(),

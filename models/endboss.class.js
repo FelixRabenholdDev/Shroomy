@@ -5,6 +5,10 @@ class Endboss extends MovableObject {
   energy = 100;
   isEndboss = true;
 
+  dying = false;
+  dyingSpeed = 4;
+  opacity = 1;
+
   offset = {
     top: 20,
     bottom: 35,
@@ -49,20 +53,80 @@ class Endboss extends MovableObject {
     super().loadImage('../assets/img/SlimeOrange/SlimeOrange_00000.png');
     this.loadImages(this.Walking_Images);
 
-    this.x = 700 + Math.random() * 500;
+    this.x = 1700 + Math.random() * 200;
+    this.speed = 0.3;
     this.animate();
+    this.moveTowardsPlayer();
   }
 
-  animate() {    
-      setInterval(() => {
-        this.playAnimation(this.Walking_Images);
-      }, 100);
-    }
+  animate() {
+    setInterval(() => {
+      this.playAnimation(this.Walking_Images);
+    }, 100);
+  }
+
+  moveTowardsPlayer() {
+    const moveInterval = setInterval(() => {
+      if (!this.world) return;
+
+      const playerX = this.world.character.x;
+
+      if (this.dying) {
+        clearInterval(moveInterval);
+        return;
+      }
+
+      if (this.x > playerX + 50) {
+        this.moveLeft();
+        this.otherDirection = true;
+      }
+    }, 50);
+
+    setInterval(() => {
+      if (this.dying) return;
+
+      if (this.world.isOnScreen(this)) {
+        this.speed = 0.5 + Math.random() * 0.7;
+      }
+
+      if (this.energy <= 50) {
+        this.speed += 0.8;
+      }
+    }, 1000 + Math.random() * 1000);
+  }
 
   takeHit(damage) {
     this.energy -= damage;
     if (this.energy <= 0) {
-      this.markedForDeletion = true;
+      this.energy = 0;
+      this.dying = true;
+      this.dyingAnimation();
     }
+  }
+
+  dyingAnimation() {
+    const dyingInterval = setInterval(() => {
+      if (this.width > 0 && this.height > 0 && this.opacity > 0) {
+        this.width -= this.dyingSpeed;
+        this.height -= this.dyingSpeed;
+        this.y += this.dyingSpeed / 2;
+        this.opacity -= 0.02;
+        if (this.opacity < 0) this.opacity = 0;
+      } else {
+        clearInterval(dyingInterval);
+        this.markedForDeletion = true;
+        if (this.world) {
+          this.world.pause();
+          showWinScreen();
+        }
+      }
+    }, 50);
+  }
+
+  draw(ctx) {
+    ctx.save();
+    ctx.globalAlpha = this.opacity;
+    super.draw(ctx);
+    ctx.restore();
   }
 }

@@ -9,6 +9,7 @@ class World {
   camera_x = 0;
   statusbar = new HPStatusBar();
   manaStatusBar = new ManaStatusBar();
+  endbossStatusBar = new EndbossStatusBar();
   throwableObjects = [];
   lastThrowTime = 0;
   isPaused = true;
@@ -111,7 +112,7 @@ class World {
         if (throwable.isColliding(enemy)) {
           if (enemy.isEndboss) {
             enemy.takeHit(25);
-            throwable.markedForDeletion = true;
+            throwable.markedForDeletion = true;            
           } else {
             enemy.markedForDeletion = true;
             throwable.markedForDeletion = true;
@@ -122,7 +123,7 @@ class World {
     });
 
     this.throwableObjects = this.throwableObjects.filter(
-      (o) => !o.markedForDeletion,
+      (object) => !object.markedForDeletion,
     );
 
     for (let i = this.level.enemies.length - 1; i >= 0; i--) {
@@ -176,6 +177,13 @@ class World {
     this.addToMap(this.statusbar);
     this.addToMap(this.manaStatusBar);
 
+    const endboss = this.level.enemies.find((enemy) => enemy.isEndboss);
+    if (endboss && this.isOnScreen(endboss)) {
+      this.endbossStatusBar.adjustPosition(this.canvas);
+      this.endbossStatusBar.setPercentage(endboss.energy);
+      this.addToMap(this.endbossStatusBar);
+    }
+
     this.checkCollisions();
     this.checkThrowObjects();
     this.checkThrowableCollisions();
@@ -218,5 +226,11 @@ class World {
   gameOver() {
     this.pause();
     showEndScreen();
+  }
+
+  isOnScreen(obj) {
+    const screenLeft = -this.camera_x;
+    const screenRight = -this.camera_x + this.canvas.width;
+    return obj.x + obj.width > screenLeft && obj.x < screenRight;
   }
 }

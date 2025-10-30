@@ -15,7 +15,7 @@ class SoundManager {
     this.backgroundMusic.loop = true;
     this.backgroundMusic.volume = 0.2;
 
-    this.sounds.walk.volume = 0.4;
+    this.sounds.walk.volume = 0.5;
     this.sounds.walk.loop = true;
 
     this.sounds.jump.volume = 0.4;
