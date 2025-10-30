@@ -95,5 +95,5 @@ class MovableObject extends DrawableObject {
     if (this.world && this.world.soundManager) {
       this.world.soundManager.play('jump');
     }
-  }
+  }  
 }

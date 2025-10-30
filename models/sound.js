@@ -67,6 +67,10 @@ class SoundManager {
 
   mute() {
     this.isMuted = true;
+    this.backgroundMusic.volume = 0;
+    for (let key in this.sounds) {
+      this.sounds[key].volume = 0;
+    }
     this.backgroundMusic.pause();
     for (let key in this.sounds) {
       this.sounds[key].pause();
@@ -76,6 +80,14 @@ class SoundManager {
 
   unmute() {
     this.isMuted = false;
+    this.backgroundMusic.volume = 0.2;
+    this.sounds.walk.volume = 0.5;
+    this.sounds.jump.volume = 0.4;
+    this.sounds.shoot.volume = 0.4;
+    this.sounds.collect.volume = 0.5;
+    this.sounds.slimeHit.volume = 0.4;
+    this.sounds.slimeJump.volume = 0.5;
+    
     this.backgroundMusic.play();
     localStorage.setItem('mute', 'false');
   }

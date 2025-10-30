@@ -167,7 +167,7 @@ class World {
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.level.collectableObjects);
-    this.addObjectsToMap(this.throwableObjects);
+    this.addObjectsToMap(this.throwableObjects); 
 
     this.ctx.translate(-this.camera_x, 0);
     // Space for Fixed Objects
@@ -187,11 +187,11 @@ class World {
     this.checkCollisions();
     this.checkThrowObjects();
     this.checkThrowableCollisions();
-    this.checkCollectableCollisions();
+    this.checkCollectableCollisions();    
 
     // Draw() triggers over and over again
 
-    this.animationFrame = requestAnimationFrame(() => this.drawWorld());
+    this.animationFrame = requestAnimationFrame(() => this.drawWorld());    
   }
 
   addObjectsToMap(objects) {

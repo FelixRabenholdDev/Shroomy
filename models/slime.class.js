@@ -3,10 +3,10 @@ class Slime extends MovableObject {
   jumpInterval;
 
   offset = {
-    top: 7,
-    bottom: 7,
-    left: 7,
-    right: 7,
+    top: 11,
+    bottom: 8,
+    left: 9,
+    right: 9,
   };
 
   isSquashed = false;
@@ -52,7 +52,7 @@ class Slime extends MovableObject {
     this.x = 250 + Math.random() * 1500;
     this.width = 45;
     this.height = 45;
-    this.y = 290;
+    this.y = 283;
     this.groundLevel = this.y;
     this.speed = 0.15 + Math.random() * 0.35;
     this.currentImage = Math.floor(Math.random() * this.Walking_Images.length);

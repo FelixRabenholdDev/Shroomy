@@ -3,10 +3,10 @@ class Character extends MovableObject {
   lastSpeedY = 0;
 
   offset = {
-    top: 20,
-    bottom: 20,
-    left: 35,
-    right: 35,
+    top: 27,
+    bottom: 27,
+    left: 38,
+    right: 39,
   };
 
   Idle_Images = [
