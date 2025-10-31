@@ -93,7 +93,7 @@ class Slime extends MovableObject {
 
   jump() {
     this.speedY = 4 + Math.random() * 5;
-    if (this.world && this.world.soundManager) {
+    if (this.world && this.world.soundManager && this.world.isOnScreen(this)) {
       this.world.soundManager.play('slimeJump');
     }
   }
