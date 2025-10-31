@@ -222,7 +222,19 @@ class World {
           this.character.y < enemy.y &&
           (this.character.speedY <= 0 || this.character.lastSpeedY < 0);
 
-        if (comingFromAbove && !(enemy instanceof Endboss)) {
+        this.checkSquashOrHit(comingFromAbove, enemy);
+        this.character.lastSpeedY = this.character.speedY;
+      }
+    });
+  }
+
+   /**
+   * Checks if the character squashes an enemy or takes damage.
+   * @param {boolean} comingFromAbove Indicates if the character is coming from above the enemy
+   * @param {Enemy} enemy The enemy being checked for collision
+   */
+  checkSquashOrHit(comingFromAbove, enemy) {
+    if (comingFromAbove && !(enemy instanceof Endboss)) {
           enemy.squash();
           this.soundManager.play('slimeHit');
           this.character.bounce();
@@ -233,9 +245,6 @@ class World {
             enemy.pauseMovement();
           }
         }
-        this.character.lastSpeedY = this.character.speedY;
-      }
-    });
   }
 
   /**
@@ -278,7 +287,6 @@ class World {
         }
       });
     });
-
     this.throwableObjects = this.throwableObjects.filter(
       (object) => !object.markedForDeletion,
     );
@@ -318,23 +326,10 @@ class World {
    */
   drawWorld() {
     if (this.isPaused) return;
-
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.save();
-
-    this.ctx.translate(this.camera_x, 0);
-    this.addObjectsToMap(this.level.backgroundObjects);
-    this.addToMap(this.character);
-    this.addObjectsToMap(this.level.enemies);
-    this.addObjectsToMap(this.level.collectableObjects);
-    this.addObjectsToMap(this.throwableObjects);
-    this.ctx.restore();
-
-    this.statusbar.adjustPosition(this.canvas);
-    this.manaStatusBar.adjustPosition(this.canvas);
-    this.addToMap(this.statusbar);
-    this.addToMap(this.manaStatusBar);
-
+    this.cameraTranslate();
+    this.addStatusBarsToMap();
     const endboss = this.level.enemies.find((enemy) => enemy.isEndboss);
     if (endboss && this.isOnScreen(endboss)) {
       this.endbossStatusBar.adjustPosition(this.canvas);
@@ -346,6 +341,29 @@ class World {
     this.checkThrowableCollisions();
     this.checkCollectableCollisions();
     this.animationFrame = requestAnimationFrame(() => this.drawWorld());
+  }
+  
+  /**
+   * Displaces the camera and draws all game objects.
+   */
+  cameraTranslate() {
+    this.ctx.translate(this.camera_x, 0);
+    this.addObjectsToMap(this.level.backgroundObjects);
+    this.addToMap(this.character);
+    this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.level.collectableObjects);
+    this.addObjectsToMap(this.throwableObjects);
+    this.ctx.restore();
+  }
+
+  /**
+   * Adds status bars to the map.
+   */
+  addStatusBarsToMap() {
+    this.statusbar.adjustPosition(this.canvas);
+    this.manaStatusBar.adjustPosition(this.canvas);
+    this.addToMap(this.statusbar);
+    this.addToMap(this.manaStatusBar);
   }
 
   /**

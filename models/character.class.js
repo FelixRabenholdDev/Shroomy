@@ -141,34 +141,13 @@ class Character extends MovableObject {
 
   /**
    * Animates the character based on movement, jumping, and health state.
-   * Handles keyboard input and camera movement.
    */
   animate() {
     setInterval(() => {
-      // Movement controls
-      if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-        this.moveRight();
-        this.otherDirection = false;
-      }
-      if (this.world.keyboard.LEFT && this.x > -500) {
-        this.moveLeft();
-        this.otherDirection = true;
-      }
-      if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-        this.jump();
-      }
-      this.world.camera_x = -this.x + 100;
-
-      // Walking sound
-      if (!this.isAboveGround() && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT)) {
-        this.world.soundManager.startLoop('walk', 0.5 + this.speed / 10);
-      } else {
-        this.world.soundManager.stopLoop('walk');
-      }
+      this.movement();      
     }, 1000 / 60);
 
     setInterval(() => {
-      // Animation frames
       if (this.isDead()) {
         this.playAnimation(this.Dying_Images);
       } else if (this.isHurt()) {
@@ -182,6 +161,29 @@ class Character extends MovableObject {
       }
     }, 100);
   }
+
+  /**
+   * Handles keyboard input and camera movement.
+   */
+  movement() {
+    if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+        this.moveRight();
+        this.otherDirection = false;
+      }
+      if (this.world.keyboard.LEFT && this.x > -500) {
+        this.moveLeft();
+        this.otherDirection = true;
+      }
+      if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+        this.jump();
+      }
+      this.world.camera_x = -this.x + 100;
+      if (!this.isAboveGround() && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT)) {
+        this.world.soundManager.startLoop('walk', 0.5 + this.speed / 10);
+      } else {
+        this.world.soundManager.stopLoop('walk');
+      }
+    }
 
   /**
    * Makes the character bounce upwards, e.g., after stomping on an enemy.

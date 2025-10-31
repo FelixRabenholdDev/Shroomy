@@ -116,7 +116,6 @@ class Slime extends MovableObject {
           this.isJumping = true;
         }
       }
-
       if (!this.isAboveGround()) {
         this.isJumping = false;
       }
@@ -141,9 +140,7 @@ class Slime extends MovableObject {
     this.isSquashed = true;
     this.height = this.height / 2;
     this.y += this.height / 2;
-
     clearInterval(this.animInterval);
-
     setTimeout(() => {
       this.markedForDeletion = true;
     }, 100);

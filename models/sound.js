@@ -129,7 +129,6 @@ class SoundManager {
     this.sounds.collect.volume = 0.2;
     this.sounds.slimeHit.volume = 0.2;
     this.sounds.slimeJump.volume = 0.2;
-
     this.backgroundMusic.play();
     localStorage.setItem('mute', 'false');
   }

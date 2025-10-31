@@ -108,13 +108,11 @@ class Endboss extends MovableObject {
     }, 100);
   }
 
-  /** Move towards the player with adaptive speed and random wobble */
+  /** Move towards the player with random wobble */
   moveTowardsPlayer() {
     const moveInterval = setInterval(() => {
       if (!this.world || this.dying || this.isStunned) return;
-
       const playerX = this.world.character.x;
-
       if (this.x > playerX + 20) {
         this.moveLeft();
         this.otherDirection = true;
@@ -127,12 +125,17 @@ class Endboss extends MovableObject {
     }, 50);
 
     setInterval(() => {
-      if (this.dying) return;
+      this.rageMode();
+    }, 1000 + Math.random() * 1500);
+  }
+  
+  /** Increase speed based on remaining energy */
+  rageMode() {
+    if (this.dying) return;
       if (this.world.isOnScreen(this)) this.speed = 0.5 + Math.random() * 0.7;
       if (this.energy <= 75) this.speed += 1.0;
       if (this.energy <= 50) this.speed += 1.5;
       if (this.energy <= 25) this.speed += 2.0;
-    }, 1000 + Math.random() * 1500);
   }
 
   /** Temporarily pause movement */
