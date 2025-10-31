@@ -128,14 +128,14 @@ class Endboss extends MovableObject {
       this.rageMode();
     }, 1000 + Math.random() * 1500);
   }
-  
+
   /** Increase speed based on remaining energy */
   rageMode() {
     if (this.dying) return;
-      if (this.world.isOnScreen(this)) this.speed = 0.5 + Math.random() * 0.7;
-      if (this.energy <= 75) this.speed += 1.0;
-      if (this.energy <= 50) this.speed += 1.5;
-      if (this.energy <= 25) this.speed += 2.0;
+    if (this.world.isOnScreen(this)) this.speed = 0.5 + Math.random() * 0.7;
+    if (this.energy <= 75) this.speed += 1.0;
+    if (this.energy <= 50) this.speed += 1.5;
+    if (this.energy <= 25) this.speed += 2.0;
   }
 
   /** Temporarily pause movement */

@@ -6,7 +6,6 @@
  * @extends MovableObject
  */
 class Slime extends MovableObject {
-
   /**
    * Interval ID for random jumping
    * @type {number}

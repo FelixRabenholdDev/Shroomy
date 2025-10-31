@@ -35,18 +35,18 @@ class Level {
    * @param {Array<CollectableObject>} collectableObjects - Array of collectable objects
    */
   constructor(enemies, backgroundObjects, collectableObjects) {
-    /** 
-     * @type {Array<MovableObject>} 
+    /**
+     * @type {Array<MovableObject>}
      */
     this.enemies = enemies;
 
-    /** 
-     * @type {Array<DrawableObject>} 
+    /**
+     * @type {Array<DrawableObject>}
      */
     this.backgroundObjects = backgroundObjects;
 
-    /** 
-     * @type {Array<CollectableObject>} 
+    /**
+     * @type {Array<CollectableObject>}
      */
     this.collectableObjects = collectableObjects;
   }

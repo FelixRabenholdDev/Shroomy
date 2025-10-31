@@ -46,7 +46,7 @@ class CollectableObject extends MovableObject {
    */
   animateMana() {
     setInterval(() => {
-    this.playAnimation(this.Mana_Images);
+      this.playAnimation(this.Mana_Images);
     }, 100);
   }
 }

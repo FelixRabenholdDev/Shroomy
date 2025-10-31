@@ -228,23 +228,23 @@ class World {
     });
   }
 
-   /**
+  /**
    * Checks if the character squashes an enemy or takes damage.
    * @param {boolean} comingFromAbove Indicates if the character is coming from above the enemy
    * @param {Enemy} enemy The enemy being checked for collision
    */
   checkSquashOrHit(comingFromAbove, enemy) {
     if (comingFromAbove && !(enemy instanceof Endboss)) {
-          enemy.squash();
-          this.soundManager.play('slimeHit');
-          this.character.bounce();
-        } else if (!this.character.isHurt() && !enemy.isSquashed) {
-          this.character.handleCollision();
-          this.statusbar.setPercentage(this.character.energy);
-          if (enemy.isEndboss && typeof enemy.pauseMovement === 'function') {
-            enemy.pauseMovement();
-          }
-        }
+      enemy.squash();
+      this.soundManager.play('slimeHit');
+      this.character.bounce();
+    } else if (!this.character.isHurt() && !enemy.isSquashed) {
+      this.character.handleCollision();
+      this.statusbar.setPercentage(this.character.energy);
+      if (enemy.isEndboss && typeof enemy.pauseMovement === 'function') {
+        enemy.pauseMovement();
+      }
+    }
   }
 
   /**
@@ -342,7 +342,7 @@ class World {
     this.checkCollectableCollisions();
     this.animationFrame = requestAnimationFrame(() => this.drawWorld());
   }
-  
+
   /**
    * Displaces the camera and draws all game objects.
    */
