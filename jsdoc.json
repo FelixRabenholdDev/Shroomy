@@ -1,0 +1,10 @@
+{  
+  "source": {
+    "include": ["./models", "./scripts"],  
+    "includePattern": ".+\\.js$", 
+    "excludePattern": "(^|\\/|\\\\)(assets|node_modules|tests)\\/"
+  }, 
+  "opts": {
+    "destination": "./out"
+  }
+}

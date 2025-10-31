@@ -1,19 +1,39 @@
 /**
- * The Endboss class represents the final boss character in the game, with movement, animation, and dying behavior.
- * @class
+ * Represents the final boss character in the game.
+ * Handles movement, animation, dying behavior, and interaction with the player.
+ *
+ * @class Endboss
+ * @extends MovableObject
  */
-
 class Endboss extends MovableObject {
+  /** @type {number} Vertical position of the endboss */
   y = 175;
-  height = 200;
+
+  /** @type {number} Width of the endboss sprite */
   width = 200;
+
+  /** @type {number} Height of the endboss sprite */
+  height = 200;
+
+  /** @type {number} Current energy (health) of the endboss */
   energy = 100;
+
+  /** @type {boolean} Flag to mark this object as the endboss */
   isEndboss = true;
 
+  /** @type {boolean} Flag to indicate if the endboss is dying */
   dying = false;
-  dyingSpeed = 4;
-  opacity = 1; 
 
+  /** @type {number} Speed of the dying animation */
+  dyingSpeed = 4;
+
+  /** @type {number} Current opacity for drawing the dying effect */
+  opacity = 1;
+
+  /**
+   * Collision offset for fine-tuning collision detection
+   * @type {{top: number, bottom: number, left: number, right: number}}
+   */
   offset = {
     top: 20,
     bottom: 35,
@@ -21,6 +41,7 @@ class Endboss extends MovableObject {
     right: 10,
   };
 
+  /** @type {string[]} Images used for walking animation */
   Walking_Images = [
     'assets/img/SlimeOrange/SlimeOrange_00000.png',
     'assets/img/SlimeOrange/SlimeOrange_00001.png',
@@ -54,10 +75,12 @@ class Endboss extends MovableObject {
     'assets/img/SlimeOrange/SlimeOrange_00029.png',
   ];
 
+  /**
+   * Creates a new Endboss instance, loading images and initializing position and behavior.
+   */
   constructor() {
     super().loadImage('assets/img/SlimeOrange/SlimeOrange_00000.png');
     this.loadImages(this.Walking_Images);
-
     this.x = 1700 + Math.random() * 200;
     this.speed = 0.3;
     this.isStunned = false;
@@ -65,57 +88,52 @@ class Endboss extends MovableObject {
     this.moveTowardsPlayer();
   }
 
+  /** Animate the walking images */
   animate() {
     setInterval(() => {
       this.playAnimation(this.Walking_Images);
     }, 100);
   }
 
+  /** Move towards the player with adaptive speed and random wobble */
   moveTowardsPlayer() {
-  const moveInterval = setInterval(() => {
-    if (!this.world || this.dying) return;
-    if (this.isStunned) return;
+    const moveInterval = setInterval(() => {
+      if (!this.world || this.dying || this.isStunned) return;
 
-    const playerX = this.world.character.x;
-    const distance = Math.abs(this.x - playerX);
+      const playerX = this.world.character.x;
 
-    if (this.x > playerX + 20) {
-      this.moveLeft();
-      this.otherDirection = true;
-    } else if (this.x < playerX - 20) {
-      this.moveRight();
-      this.otherDirection = false;
-    } else {
-      this.x += (Math.random() - 0.5) * 1;
-    }
-  }, 50);
+      if (this.x > playerX + 20) {
+        this.moveLeft();
+        this.otherDirection = true;
+      } else if (this.x < playerX - 20) {
+        this.moveRight();
+        this.otherDirection = false;
+      } else {
+        this.x += (Math.random() - 0.5) * 1;
+      }
+    }, 50);
 
     setInterval(() => {
       if (this.dying) return;
-
-      if (this.world.isOnScreen(this)) {
-        this.speed = 0.5 + Math.random() * 0.7;
-      }
-
-      if (this.energy <= 75) {
-        this.speed += 1.0;
-      }
-      if (this.energy <= 50) {
-        this.speed += 1.5;
-      }
-      if (this.energy <= 25) {
-        this.speed += 2.0;
-      }
+      if (this.world.isOnScreen(this)) this.speed = 0.5 + Math.random() * 0.7;
+      if (this.energy <= 75) this.speed += 1.0;
+      if (this.energy <= 50) this.speed += 1.5;
+      if (this.energy <= 25) this.speed += 2.0;
     }, 1000 + Math.random() * 1500);
   }
 
+  /** Temporarily pause movement */
   pauseMovement() {
-  this.isStunned = true;
-  setTimeout(() => {
-    this.isStunned = false;
-  }, 1000);
-}
+    this.isStunned = true;
+    setTimeout(() => {
+      this.isStunned = false;
+    }, 1000);
+  }
 
+  /**
+   * Applies damage to the endboss and triggers dying behavior if energy reaches 0
+   * @param {number} damage Amount of damage to apply
+   */
   takeHit(damage) {
     this.energy -= damage;
     if (this.energy <= 0) {
@@ -125,6 +143,7 @@ class Endboss extends MovableObject {
     }
   }
 
+  /** Perform dying animation by shrinking and fading out */
   dyingAnimation() {
     const dyingInterval = setInterval(() => {
       if (this.width > 0 && this.height > 0 && this.opacity > 0) {
@@ -144,6 +163,10 @@ class Endboss extends MovableObject {
     }, 50);
   }
 
+  /**
+   * Draws the endboss on the canvas, respecting current opacity.
+   * @param {CanvasRenderingContext2D} ctx The rendering context
+   */
   draw(ctx) {
     ctx.save();
     ctx.globalAlpha = this.opacity;

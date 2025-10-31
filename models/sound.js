@@ -1,13 +1,20 @@
 /**
- * The SoundManager class handles all audio functionalities in the game, including sound effects and background music.
- * @class
+ * Handles all audio functionalities in the game, including sound effects and background music.
+ *
+ * @class SoundManager
  */
-
 class SoundManager {
+  /** @type {number} Playback rate for sounds */
   rate = 1;
+
+  /** @type {boolean} Flag indicating if the audio is muted */
   isMuted = false;
 
+  /**
+   * Creates a new SoundManager instance and initializes all audio files and volumes.
+   */
   constructor() {
+    /** @type {{[key: string]: HTMLAudioElement}} Collection of sound effect objects */
     this.sounds = {
       walk: new Audio('assets/audio/walk.wav'),
       jump: new Audio('assets/audio/jump.wav'),
@@ -17,23 +24,28 @@ class SoundManager {
       slimeJump: new Audio('assets/audio/slime_jump.wav'),
     };
 
+    /** @type {HTMLAudioElement} Background music */
     this.backgroundMusic = new Audio('assets/audio/background.mp3');
     this.backgroundMusic.loop = true;
-    this.backgroundMusic.volume = 0.2;
+    this.backgroundMusic.volume = 0.15;
 
     this.sounds.walk.volume = 0.5;
     this.sounds.walk.loop = true;
 
-    this.sounds.jump.volume = 0.4;
-    this.sounds.shoot.volume = 0.4;
-    this.sounds.collect.volume = 0.5;
-    this.sounds.slimeHit.volume = 0.4;
-    this.sounds.slimeJump.volume = 0.5;
+    this.sounds.jump.volume = 0.2;
+    this.sounds.shoot.volume = 0.2;
+    this.sounds.collect.volume = 0.2;
+    this.sounds.slimeHit.volume = 0.2;
+    this.sounds.slimeJump.volume = 0.2;
 
     const savedMute = localStorage.getItem('mute');
     if (savedMute === 'true') this.mute();
   }
 
+  /**
+   * Plays a one-time sound effect by name.
+   * @param {string} name The name of the sound to play
+   */
   play(name) {
     if (this.isMuted) return;
     const sound = this.sounds[name];
@@ -43,6 +55,11 @@ class SoundManager {
     }
   }
 
+  /**
+   * Starts looping a sound effect.
+   * @param {string} name The name of the sound to loop
+   * @param {number} rate Playback rate for the looped sound
+   */
   startLoop(name, rate) {
     if (this.isMuted) return;
     const sound = this.sounds[name];
@@ -53,6 +70,10 @@ class SoundManager {
     }
   }
 
+  /**
+   * Stops a looping sound effect.
+   * @param {string} name The name of the sound to stop
+   */
   stopLoop(name) {
     const sound = this.sounds[name];
     if (sound && !sound.paused) {
@@ -60,16 +81,19 @@ class SoundManager {
     }
   }
 
+  /** Starts the background music */
   startMusic() {
     if (this.isMuted) return;
     this.backgroundMusic.currentTime = 0;
     this.backgroundMusic.play();
   }
 
+  /** Stops the background music */
   stopMusic() {
     this.backgroundMusic.pause();
   }
 
+  /** Mutes all sounds and background music, saving the state to localStorage */
   mute() {
     this.isMuted = true;
     this.backgroundMusic.volume = 0;
@@ -83,6 +107,7 @@ class SoundManager {
     localStorage.setItem('mute', 'true');
   }
 
+  /** Unmutes all sounds and background music, restoring their volumes */
   unmute() {
     this.isMuted = false;
     this.backgroundMusic.volume = 0.2;
@@ -97,6 +122,7 @@ class SoundManager {
     localStorage.setItem('mute', 'false');
   }
 
+  /** Toggles the muted state between muted and unmuted */
   toggleMute() {
     if (this.isMuted) this.unmute();
     else this.mute();

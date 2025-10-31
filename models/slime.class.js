@@ -1,12 +1,16 @@
 /**
- * The Slime class represents a slime enemy in the game, capable of walking, jumping, and being squashed.
- * @class
+ * Represents a slime enemy in the game.
+ * The slime can walk, jump randomly, and be squashed by the player.
+ *
+ * @class Slime
+ * @extends MovableObject
  */
-
 class Slime extends MovableObject {
 
+  /** @type {number} Interval ID for random jumping */
   jumpInterval;
 
+  /** @type {Object} Collision offset for the slime */
   offset = {
     top: 11,
     bottom: 8,
@@ -14,9 +18,12 @@ class Slime extends MovableObject {
     right: 9,
   };
 
+  /** @type {boolean} Indicates if the slime is squashed */
   isSquashed = false;
+  /** @type {boolean} Indicates if the slime is currently jumping */
   isJumping = false;
 
+  /** @type {string[]} Array of images for walking animation */
   Walking_Images = [
     'assets/img/SlimeGreen/SlimeBasic_00000.png',
     'assets/img/SlimeGreen/SlimeBasic_00001.png',
@@ -50,6 +57,9 @@ class Slime extends MovableObject {
     'assets/img/SlimeGreen/SlimeBasic_00029.png',
   ];
 
+  /**
+   * Creates a new Slime instance with randomized position, speed, and initial animation frame.
+   */
   constructor() {
     super().loadImage('assets/img/SlimeGreen/SlimeBasic_00000.png');
     this.loadImages(this.Walking_Images);
@@ -66,6 +76,9 @@ class Slime extends MovableObject {
     this.enableRandomJumping();
   }
 
+  /**
+   * Starts movement and walking animation intervals.
+   */
   animate() {
     setInterval(() => {
       this.moveLeft();
@@ -76,6 +89,9 @@ class Slime extends MovableObject {
     }, 100);
   }
 
+  /**
+   * Enables the slime to randomly jump at intervals.
+   */
   enableRandomJumping() {
     this.jumpInterval = setInterval(() => {
       if (!this.isAboveGround() && !this.isJumping) {
@@ -91,6 +107,9 @@ class Slime extends MovableObject {
     }, 150);
   }
 
+  /**
+   * Makes the slime jump with a randomized vertical speed.
+   */
   jump() {
     this.speedY = 4 + Math.random() * 5;
     if (this.world && this.world.soundManager && this.world.isOnScreen(this)) {
@@ -98,6 +117,9 @@ class Slime extends MovableObject {
     }
   }
 
+  /**
+   * Squashes the slime, marking it for deletion after a short delay.
+   */
   squash() {
     if (this.isSquashed) return;
     this.isSquashed = true;
