@@ -4,21 +4,27 @@
  * @class Keyboard
  */
 class Keyboard {
-  /** @type {boolean} True if the left arrow key is pressed */
+  /** True if the left arrow key is pressed */
+  /** @type {boolean} */
   LEFT = false;
 
-  /** @type {boolean} True if the right arrow key is pressed */
+  /** True if the right arrow key is pressed */
+  /** @type {boolean} */
   RIGHT = false;
 
-  /** @type {boolean} True if the up arrow key is pressed */
+  /** True if the up arrow key is pressed */
+  /** @type {boolean} */
   UP = false;
 
-  /** @type {boolean} True if the down arrow key is pressed */
+  /** True if the down arrow key is pressed */
+  /** @type {boolean} */
   DOWN = false;
 
-  /** @type {boolean} True if the spacebar is pressed */
+  /** True if the spacebar is pressed */
+  /** @type {boolean} */
   SPACE = false;
 
-  /** @type {boolean} True if the "D" key is pressed */
+  /** True if the "D" key is pressed */
+  /** @type {boolean} */
   D = false;
 }

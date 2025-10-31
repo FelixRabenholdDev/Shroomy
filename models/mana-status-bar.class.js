@@ -5,7 +5,10 @@
  * @extends DrawableObject
  */
 class ManaStatusBar extends DrawableObject {
-  /** @type {string[]} Array of images representing the mana bar at different percentages */
+  /**
+   * Array of images representing the mana bar at different percentages
+   * @type {string[]}
+   */
   IMAGES = [
     'assets/img/UIBars/Green00.png',
     'assets/img/UIBars/Green25.png',
@@ -14,7 +17,10 @@ class ManaStatusBar extends DrawableObject {
     'assets/img/UIBars/Green100.png',
   ];
 
-  /** @type {number} Current mana percentage */
+  /**
+   * Current mana percentage (0-100)
+   * @type {number}
+   */
   percentage = 100;
 
   /**
@@ -52,16 +58,10 @@ class ManaStatusBar extends DrawableObject {
    * @returns {number} Image index for the current mana percentage
    */
   resolveImageIndex() {
-    if (this.percentage == 100) {
-      return 4;
-    } else if (this.percentage >= 75) {
-      return 3;
-    } else if (this.percentage >= 50) {
-      return 2;
-    } else if (this.percentage >= 25) {
-      return 1;
-    } else {
-      return 0;
-    }
+    if (this.percentage === 100) return 4;
+    if (this.percentage >= 75) return 3;
+    if (this.percentage >= 50) return 2;
+    if (this.percentage >= 25) return 1;
+    return 0;
   }
 }

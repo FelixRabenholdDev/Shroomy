@@ -5,7 +5,8 @@
  * @extends DrawableObject
  */
 class HPStatusBar extends DrawableObject {
-  /** @type {string[]} Array of image paths representing different HP levels */
+  /** Array of image paths representing different HP levels */
+  /** @type {string[]} */
   IMAGES = [
     'assets/img/UIBars/Blue00.png',
     'assets/img/UIBars/Blue25.png',
@@ -14,7 +15,8 @@ class HPStatusBar extends DrawableObject {
     'assets/img/UIBars/Blue100.png',
   ];
 
-  /** @type {number} Current HP percentage (0-100) */
+  /** Current HP percentage (0-100) */
+  /** @type {number} */
   percentage = 100;
 
   /**

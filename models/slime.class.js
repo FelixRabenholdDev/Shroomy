@@ -7,10 +7,16 @@
  */
 class Slime extends MovableObject {
 
-  /** @type {number} Interval ID for random jumping */
+  /**
+   * Interval ID for random jumping
+   * @type {number}
+   */
   jumpInterval;
 
-  /** @type {Object} Collision offset for the slime */
+  /**
+   * Collision offset for the slime
+   * @type {Object}
+   */
   offset = {
     top: 11,
     bottom: 8,
@@ -18,12 +24,22 @@ class Slime extends MovableObject {
     right: 9,
   };
 
-  /** @type {boolean} Indicates if the slime is squashed */
+  /**
+   * Indicates if the slime is squashed
+   * @type {boolean}
+   */
   isSquashed = false;
-  /** @type {boolean} Indicates if the slime is currently jumping */
+
+  /**
+   * Indicates if the slime is currently jumping
+   * @type {boolean}
+   */
   isJumping = false;
 
-  /** @type {string[]} Array of images for walking animation */
+  /**
+   * Array of images for walking animation
+   * @type {string[]}
+   */
   Walking_Images = [
     'assets/img/SlimeGreen/SlimeBasic_00000.png',
     'assets/img/SlimeGreen/SlimeBasic_00001.png',

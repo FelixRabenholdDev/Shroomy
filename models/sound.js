@@ -4,17 +4,26 @@
  * @class SoundManager
  */
 class SoundManager {
-  /** @type {number} Playback rate for sounds */
+  /**
+   * Playback rate for sounds
+   * @type {number}
+   */
   rate = 1;
 
-  /** @type {boolean} Flag indicating if the audio is muted */
+  /**
+   * Flag indicating if the audio is muted
+   * @type {boolean}
+   */
   isMuted = false;
 
   /**
    * Creates a new SoundManager instance and initializes all audio files and volumes.
    */
   constructor() {
-    /** @type {{[key: string]: HTMLAudioElement}} Collection of sound effect objects */
+    /**
+     * Collection of sound effect objects
+     * @type {Object.<string, HTMLAudioElement>}
+     */
     this.sounds = {
       walk: new Audio('assets/audio/walk.wav'),
       jump: new Audio('assets/audio/jump.wav'),
@@ -24,7 +33,10 @@ class SoundManager {
       slimeJump: new Audio('assets/audio/slime_jump.wav'),
     };
 
-    /** @type {HTMLAudioElement} Background music */
+    /**
+     * Background music
+     * @type {HTMLAudioElement}
+     */
     this.backgroundMusic = new Audio('assets/audio/background.mp3');
     this.backgroundMusic.loop = true;
     this.backgroundMusic.volume = 0.15;
@@ -110,14 +122,14 @@ class SoundManager {
   /** Unmutes all sounds and background music, restoring their volumes */
   unmute() {
     this.isMuted = false;
-    this.backgroundMusic.volume = 0.2;
+    this.backgroundMusic.volume = 0.15;
     this.sounds.walk.volume = 0.5;
-    this.sounds.jump.volume = 0.4;
-    this.sounds.shoot.volume = 0.4;
-    this.sounds.collect.volume = 0.5;
-    this.sounds.slimeHit.volume = 0.4;
-    this.sounds.slimeJump.volume = 0.5;
-    
+    this.sounds.jump.volume = 0.2;
+    this.sounds.shoot.volume = 0.2;
+    this.sounds.collect.volume = 0.2;
+    this.sounds.slimeHit.volume = 0.2;
+    this.sounds.slimeJump.volume = 0.2;
+
     this.backgroundMusic.play();
     localStorage.setItem('mute', 'false');
   }

@@ -4,16 +4,28 @@
  * @class Level
  */
 class Level {
-  /** @type {Array<MovableObject>} The enemies present in this level */
+  /**
+   * The enemies present in this level
+   * @type {Array<MovableObject>}
+   */
   enemies;
 
-  /** @type {Array<DrawableObject>} Background objects in the level */
+  /**
+   * Background objects in the level
+   * @type {Array<DrawableObject>}
+   */
   backgroundObjects;
 
-  /** @type {Array<CollectableObject>} Collectable objects in the level */
+  /**
+   * Collectable objects in the level
+   * @type {Array<CollectableObject>}
+   */
   collectableObjects;
 
-  /** @type {number} The x-coordinate marking the end of the level */
+  /**
+   * The x-coordinate marking the end of the level
+   * @type {number}
+   */
   level_end_x = 719 * 3 - 100; // Adjusted for camera_x
 
   /**
@@ -23,8 +35,19 @@ class Level {
    * @param {Array<CollectableObject>} collectableObjects - Array of collectable objects
    */
   constructor(enemies, backgroundObjects, collectableObjects) {
+    /** 
+     * @type {Array<MovableObject>} 
+     */
     this.enemies = enemies;
+
+    /** 
+     * @type {Array<DrawableObject>} 
+     */
     this.backgroundObjects = backgroundObjects;
+
+    /** 
+     * @type {Array<CollectableObject>} 
+     */
     this.collectableObjects = collectableObjects;
   }
 }

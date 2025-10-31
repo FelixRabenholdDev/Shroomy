@@ -6,33 +6,45 @@
  * @extends MovableObject
  */
 class Endboss extends MovableObject {
-  /** @type {number} Vertical position of the endboss */
+  /** Vertical position of the endboss */
+  /** @type {number} */
   y = 175;
 
-  /** @type {number} Width of the endboss sprite */
+  /** Width of the endboss sprite */
+  /** @type {number} */
   width = 200;
 
-  /** @type {number} Height of the endboss sprite */
+  /** Height of the endboss sprite */
+  /** @type {number} */
   height = 200;
 
-  /** @type {number} Current energy (health) of the endboss */
+  /** Current energy (health) of the endboss */
+  /** @type {number} */
   energy = 100;
 
-  /** @type {boolean} Flag to mark this object as the endboss */
+  /** Flag to mark this object as the endboss */
+  /** @type {boolean} */
   isEndboss = true;
 
-  /** @type {boolean} Flag to indicate if the endboss is dying */
+  /** Flag to indicate if the endboss is dying */
+  /** @type {boolean} */
   dying = false;
 
-  /** @type {number} Speed of the dying animation */
+  /** Speed of the dying animation */
+  /** @type {number} */
   dyingSpeed = 4;
 
-  /** @type {number} Current opacity for drawing the dying effect */
+  /** Current opacity for drawing the dying effect */
+  /** @type {number} */
   opacity = 1;
 
   /**
    * Collision offset for fine-tuning collision detection
-   * @type {{top: number, bottom: number, left: number, right: number}}
+   * @type {Object.<string, number>}
+   * @property {number} top
+   * @property {number} bottom
+   * @property {number} left
+   * @property {number} right
    */
   offset = {
     top: 20,
@@ -41,7 +53,8 @@ class Endboss extends MovableObject {
     right: 10,
   };
 
-  /** @type {string[]} Images used for walking animation */
+  /** Images used for walking animation */
+  /** @type {string[]} */
   Walking_Images = [
     'assets/img/SlimeOrange/SlimeOrange_00000.png',
     'assets/img/SlimeOrange/SlimeOrange_00001.png',

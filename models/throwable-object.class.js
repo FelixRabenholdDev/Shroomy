@@ -6,8 +6,10 @@
  * @extends MovableObject
  */
 class ThrowableObject extends MovableObject {
-  
-  /** @type {string[]} Images used for different frames of the throwable object */
+  /**
+   * Images used for different frames of the throwable object
+   * @type {string[]}
+   */
   Ball_Images = [
     'assets/img/Bullet/Bullet1.png',
     'assets/img/Bullet/Bullet2.png',
@@ -19,8 +21,8 @@ class ThrowableObject extends MovableObject {
   /**
    * Creates a new ThrowableObject at the given coordinates and immediately throws it.
    * 
-   * @param {number} x - Initial x-coordinate
-   * @param {number} y - Initial y-coordinate
+   * @param {number} x Initial x-coordinate
+   * @param {number} y Initial y-coordinate
    */
   constructor(x, y) {
     super().loadImage(this.Ball_Images[0]);
