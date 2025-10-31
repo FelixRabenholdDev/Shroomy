@@ -20,7 +20,7 @@ class ThrowableObject extends MovableObject {
 
   /**
    * Creates a new ThrowableObject at the given coordinates and immediately throws it.
-   * 
+   *
    * @param {number} x Initial x-coordinate
    * @param {number} y Initial y-coordinate
    */
@@ -41,11 +41,11 @@ class ThrowableObject extends MovableObject {
   throw() {
     this.speedY = 7;
     this.applyGravity();
-    
+
     setInterval(() => {
       this.x += 10; // horizontal movement
     }, 25);
-    
+
     this.animateThrow();
   }
 
@@ -57,17 +57,17 @@ class ThrowableObject extends MovableObject {
     setInterval(() => {
       const gradient = this.speedY;
 
-      if (gradient > 6) {
-        this.playAnimation([this.Ball_Images[0]]); 
-      } else if (gradient > 2) {
-        this.playAnimation([this.Ball_Images[1]]);
-      } else if (gradient > -2) {
-        this.playAnimation([this.Ball_Images[2]]); 
-      } else if (gradient > -6) {
-        this.playAnimation([this.Ball_Images[3]]);
-      } else {
-        this.playAnimation([this.Ball_Images[4]]);
-      }
+    if (gradient > 6) {
+      this.playAnimation([this.Ball_Images[0]]);
+    } else if (gradient > 2) {
+      this.playAnimation([this.Ball_Images[1]]);
+    } else if (gradient > -2) {
+      this.playAnimation([this.Ball_Images[2]]);
+    } else if (gradient > -6) {
+      this.playAnimation([this.Ball_Images[3]]);
+    } else {
+      this.playAnimation([this.Ball_Images[4]]);
+    }
     }, 50);
   }
 }

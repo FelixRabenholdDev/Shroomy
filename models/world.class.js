@@ -70,7 +70,7 @@
 /**
  * The World class represents the game world and manages
  * the character, level, rendering, and interactions.
- * 
+ *
  * @class
  */
 class World {
@@ -146,7 +146,7 @@ class World {
 
   /**
    * Creates a new game world instance.
-   * 
+   *
    * @constructor
    * @param {HTMLCanvasElement} canvas - The canvas used for rendering.
    * @param {Keyboard} keyboard - The keyboard input manager.
@@ -216,7 +216,6 @@ class World {
         const charBottom = this.character.y + this.character.height;
         const enemyTop = enemy.y;
         const overlap = charBottom - enemyTop;
-
         const comingFromAbove =
           overlap > 0 &&
           overlap < this.character.height * 0.6 &&
@@ -230,12 +229,10 @@ class World {
         } else if (!this.character.isHurt() && !enemy.isSquashed) {
           this.character.handleCollision();
           this.statusbar.setPercentage(this.character.energy);
-
           if (enemy.isEndboss && typeof enemy.pauseMovement === 'function') {
             enemy.pauseMovement();
           }
         }
-
         this.character.lastSpeedY = this.character.speedY;
       }
     });
@@ -285,7 +282,6 @@ class World {
     this.throwableObjects = this.throwableObjects.filter(
       (object) => !object.markedForDeletion,
     );
-
     this.level.enemies = this.level.enemies.filter((enemy) => {
       if (enemy.markedForDeletion) {
         clearInterval(enemy.jumpInterval);
@@ -312,7 +308,6 @@ class World {
         this.manaStatusBar.setPercentage(this.character.mana);
       }
     });
-
     this.level.collectableObjects = this.level.collectableObjects.filter(
       (c) => !c.markedForDeletion,
     );
@@ -326,8 +321,8 @@ class World {
 
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.save();
-    this.ctx.translate(this.camera_x, 0);
 
+    this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
@@ -346,18 +341,16 @@ class World {
       this.endbossStatusBar.setPercentage(endboss.energy);
       this.addToMap(this.endbossStatusBar);
     }
-
     this.checkCollisions();
     this.checkThrowObjects();
     this.checkThrowableCollisions();
     this.checkCollectableCollisions();
-
     this.animationFrame = requestAnimationFrame(() => this.drawWorld());
   }
 
   /**
    * Adds multiple drawable objects to the map.
-   * 
+   *
    * @param {DrawableObject[]} objects - The array of objects to draw.
    */
   addObjectsToMap(objects) {
@@ -366,7 +359,7 @@ class World {
 
   /**
    * Adds a single object to the map and handles image flipping.
-   * 
+   *
    * @param {DrawableObject} moObj - The object to draw.
    */
   addToMap(moObj) {
@@ -378,7 +371,7 @@ class World {
 
   /**
    * Flips the drawing context horizontally for mirrored objects.
-   * 
+   *
    * @param {DrawableObject} moObj - The object to flip.
    */
   flipImage(moObj) {
@@ -390,7 +383,7 @@ class World {
 
   /**
    * Restores context after flipping an image horizontally.
-   * 
+   *
    * @param {DrawableObject} moObj - The flipped object.
    */
   flipImageBack(moObj) {
@@ -408,7 +401,7 @@ class World {
 
   /**
    * Checks if an object is currently visible within the camera view.
-   * 
+   *
    * @param {DrawableObject} obj - The object to check.
    * @returns {boolean} True if the object is visible on screen.
    */
