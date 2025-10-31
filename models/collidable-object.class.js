@@ -1,3 +1,8 @@
+/**
+ * This class represents a collidable object in the game,
+ * @class
+ */
+
 class CollidableObject extends MovableObject {
   offset = {
     top: 0,

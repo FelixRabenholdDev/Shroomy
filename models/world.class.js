@@ -1,3 +1,9 @@
+/**
+ * The World class represents the game world, managing the character, level, rendering, and interactions.
+ * @class
+ */
+
+
 class World {
   character = new Character();
   level;

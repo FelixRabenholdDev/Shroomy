@@ -1,3 +1,8 @@
+/**
+ * Base class for drawable objects in a canvas.
+ * @class
+ */
+
 class DrawableObject {
   x = 20;
   y = 250;

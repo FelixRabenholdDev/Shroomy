@@ -1,3 +1,8 @@
+/**
+ * ManaStatusBar class represents a mana status bar in the game UI.
+ * @class
+ */
+
 class ManaStatusBar extends DrawableObject {
   IMAGES = [
     'assets/img/UIBars/Green00.png',

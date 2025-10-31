@@ -1,3 +1,8 @@
+/**
+ * The CollectableObject class represents a collectable mana object in the game, with animation and collection state.
+ * @class
+ */
+
 class CollectableObject extends MovableObject {
 
     collected = false;

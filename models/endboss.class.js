@@ -1,3 +1,8 @@
+/**
+ * The Endboss class represents the final boss character in the game, with movement, animation, and dying behavior.
+ * @class
+ */
+
 class Endboss extends MovableObject {
   y = 175;
   height = 200;

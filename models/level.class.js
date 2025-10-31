@@ -1,3 +1,8 @@
+/**
+ * Level class represents a game level with its enemies, background objects, and collectable objects.
+ * @class
+ */
+
 class Level {
     enemies;
     backgroundObjects;

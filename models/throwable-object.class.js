@@ -1,3 +1,8 @@
+/**
+ * ThrowableObject class represents an object that can be thrown and animated.
+ * @class
+ */
+
 class ThrowableObject extends MovableObject {
     
     Ball_Images = [

@@ -1,3 +1,8 @@
+/**
+ * Keyboard class to track the state of specific keys.
+ * @class
+ */
+
 class Keyboard {
     LEFT = false;
     RIGHT = false;

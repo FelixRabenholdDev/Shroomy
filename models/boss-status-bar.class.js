@@ -1,3 +1,8 @@
+/**
+ * The EndbossStatusBar class represents the health bar for the end boss, updating its appearance based on the boss's health percentage.
+ * @class
+ */
+
 class EndbossStatusBar extends DrawableObject {
   IMAGES = [
     'assets/img/UIBars/Red00.png',
@@ -8,7 +13,7 @@ class EndbossStatusBar extends DrawableObject {
   ];
 
   percentage = 100;
-
+  
   constructor() {
     super();
     this.loadImages(this.IMAGES);

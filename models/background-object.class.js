@@ -1,3 +1,8 @@
+/**
+ * The BackgroundObject class represents static background elements in the game world.
+ * @class
+ */
+
 class BackgroundObject extends MovableObject {
 
     width = 720;

@@ -1,3 +1,8 @@
+/**
+ * HPStatusBar class represents a health points status bar in the game.
+ * @class
+ */
+
 class HPStatusBar extends DrawableObject {
   IMAGES = [
     'assets/img/UIBars/Blue00.png',

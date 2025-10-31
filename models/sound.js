@@ -1,3 +1,8 @@
+/**
+ * The SoundManager class handles all audio functionalities in the game, including sound effects and background music.
+ * @class
+ */
+
 class SoundManager {
   rate = 1;
   isMuted = false;

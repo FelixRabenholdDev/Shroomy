@@ -1,3 +1,8 @@
+/**
+ * The MovableObject class extends DrawableObject to include movement, collision detection, and state management.
+ * @class
+ */
+
 class MovableObject extends DrawableObject {
   speed = 0.35;
   otherDirection = false;

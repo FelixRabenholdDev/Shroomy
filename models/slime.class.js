@@ -1,3 +1,8 @@
+/**
+ * The Slime class represents a slime enemy in the game, capable of walking, jumping, and being squashed.
+ * @class
+ */
+
 class Slime extends MovableObject {
 
   jumpInterval;

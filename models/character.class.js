@@ -1,3 +1,8 @@
+/**
+ * The Character class represents the main player character, handling movement, animations, and interactions.
+ * @class
+ */
+
 class Character extends MovableObject {
   speed = 1.1;
   lastSpeedY = 0;
@@ -97,7 +102,7 @@ class Character extends MovableObject {
     this.loadImages(this.Dying_Images);
     this.applyGravity();
   }
-
+  
   animate() {
     setInterval(() => {
       if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
