@@ -37,7 +37,24 @@ class Character extends MovableObject {
   Idle_Images = [
     'assets/img/2BlueWizardIdle/Chara - BlueIdle00000.png',
     'assets/img/2BlueWizardIdle/Chara - BlueIdle00001.png',
-    /* ...remaining paths... */
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00002.png',
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00003.png',
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00004.png',
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00005.png',
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00006.png',
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00007.png',
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00008.png',
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00009.png',
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00010.png',
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00011.png',
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00012.png',
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00013.png',
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00014.png',
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00015.png',
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00016.png',
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00017.png',
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00018.png',
+    'assets/img/2BlueWizardIdle/Chara - BlueIdle00019.png',
   ];
 
   /**
@@ -46,7 +63,25 @@ class Character extends MovableObject {
    */
   Walking_Images = [
     'assets/img/2BlueWizardWalk/Chara_BlueWalk00000.png',
-    /* ...remaining paths... */
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00001.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00002.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00003.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00004.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00005.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00006.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00007.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00008.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00009.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00010.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00011.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00012.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00013.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00014.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00015.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00016.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00017.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00018.png',
+    'assets/img/2BlueWizardWalk/Chara_BlueWalk00019.png',
   ];
 
   /**
@@ -55,7 +90,13 @@ class Character extends MovableObject {
    */
   Jumping_Images = [
     'assets/img/2BlueWizardJump/CharaWizardJump_00000.png',
-    /* ...remaining paths... */
+    'assets/img/2BlueWizardJump/CharaWizardJump_00001.png',
+    'assets/img/2BlueWizardJump/CharaWizardJump_00002.png',
+    'assets/img/2BlueWizardJump/CharaWizardJump_00003.png',
+    'assets/img/2BlueWizardJump/CharaWizardJump_00004.png',
+    'assets/img/2BlueWizardJump/CharaWizardJump_00005.png',
+    'assets/img/2BlueWizardJump/CharaWizardJump_00006.png',
+    'assets/img/2BlueWizardJump/CharaWizardJump_00007.png',    
   ];
 
   /**
@@ -64,7 +105,12 @@ class Character extends MovableObject {
    */
   Hurting_Images = [
     'assets/img/2BlueWizardJump/Dash2/DashBlue_00002.png',
-    /* ...remaining paths... */
+    'assets/img/2BlueWizardJump/Dash2/DashBlue_00003.png',
+    'assets/img/2BlueWizardJump/Dash2/DashBlue_00004.png',
+    'assets/img/2BlueWizardJump/Dash2/DashBlue_00005.png',
+    'assets/img/2BlueWizardJump/Dash2/DashBlue_00006.png',
+    'assets/img/2BlueWizardJump/Dash2/DashBlue_00007.png',
+    
   ];
 
   /**
@@ -73,7 +119,11 @@ class Character extends MovableObject {
    */
   Dying_Images = [
     'assets/img/2BlueWizardJump/Dash2/DashBlue_00002.png',
-    /* ...remaining paths... */
+    'assets/img/2BlueWizardJump/Dash2/DashBlue_00003.png',
+    'assets/img/2BlueWizardJump/Dash2/DashBlue_00004.png',
+    'assets/img/2BlueWizardJump/Dash2/DashBlue_00005.png',
+    'assets/img/2BlueWizardJump/Dash2/DashBlue_00006.png',
+    'assets/img/2BlueWizardJump/Dash2/DashBlue_00007.png',
   ];
 
   /**
